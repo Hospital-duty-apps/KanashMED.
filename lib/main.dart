@@ -4,6 +4,13 @@ void main() {
   runApp(const KanashMEDApp());
 }
 
+// ============================================================
+// KANASHMED - PEDIATRIC MEDICINE
+// Evidence-based educational content
+// Primary reference: Nelson Textbook of Pediatrics, 22nd ed.
+// Additional guidance: WHO and major pediatric guidelines.
+// ============================================================
+
 class KanashMEDApp extends StatelessWidget {
   const KanashMEDApp({super.key});
 
@@ -11,952 +18,958 @@ class KanashMEDApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'KanashMED',
+      title: 'KanashMED - Pediatric Medicine',
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color(0xFF087F8C),
         ),
       ),
-      home: const HomePage(),
+      home: const PediatricHomePage(),
     );
   }
 }
 
 // ============================================================
-// MODELS
+// MODEL
 // ============================================================
 
-class MedicalTopic {
+class PediatricTopic {
   final String title;
   final String category;
   final String definition;
   final String causes;
-  final String riskFactors;
-  final String pathophysiology;
-  final String clinicalPresentation;
-  final String examination;
-  final String differentialDiagnosis;
-  final String investigations;
-  final String interpretation;
+  final String clinical;
   final String severity;
-  final String emergencyManagement;
-  final String definitiveManagement;
-  final String pediatricDose;
-  final String adultDose;
-  final String contraindications;
-  final String adverseEffects;
+  final String differential;
+  final String investigations;
+  final String diagnosis;
+  final String management;
+  final String drugs;
   final String redFlags;
   final String admission;
   final String discharge;
-  final String clinicalPearls;
-  final String references;
+  final String keyPoints;
+  final String reference;
 
-  const MedicalTopic({
+  const PediatricTopic({
     required this.title,
     required this.category,
     required this.definition,
     required this.causes,
-    required this.riskFactors,
-    required this.pathophysiology,
-    required this.clinicalPresentation,
-    required this.examination,
-    required this.differentialDiagnosis,
-    required this.investigations,
-    required this.interpretation,
+    required this.clinical,
     required this.severity,
-    required this.emergencyManagement,
-    required this.definitiveManagement,
-    required this.pediatricDose,
-    required this.adultDose,
-    required this.contraindications,
-    required this.adverseEffects,
+    required this.differential,
+    required this.investigations,
+    required this.diagnosis,
+    required this.management,
+    required this.drugs,
     required this.redFlags,
     required this.admission,
     required this.discharge,
-    required this.clinicalPearls,
-    required this.references,
+    required this.keyPoints,
+    required this.reference,
   });
 }
 
 // ============================================================
-// MEDICAL LIBRARY
+// PEDIATRIC LIBRARY
 // ============================================================
 
-const List<MedicalTopic> medicalTopics = [
+const List<PediatricTopic> pediatricTopics = [
 
   // ==========================================================
-  // PEDIATRICS
+  // 1. FEVER
   // ==========================================================
 
-  MedicalTopic(
+  PediatricTopic(
     title: 'Fever in Children',
-    category: 'Pediatrics',
+    category: 'General Pediatrics',
     definition:
-        'Fever is an elevation of body temperature caused by a regulated increase in the hypothalamic temperature set point, most commonly in response to infection.',
+        'Fever is an elevation of body temperature caused by a regulated increase '
+        'in the hypothalamic temperature set point, most commonly due to infection. '
+        'The clinical importance depends on the child age, appearance, duration, '
+        'associated symptoms and risk factors rather than temperature alone.',
     causes:
-        'Common causes include viral respiratory infections, gastroenteritis, urinary tract infection, otitis media, pneumonia and bacterial infection. Less common causes include inflammatory disease, malignancy and drug reactions.',
-    riskFactors:
-        'Young age, incomplete immunization, chronic disease, immunodeficiency, recent hospitalization and exposure to infectious disease increase the risk of serious infection.',
-    pathophysiology:
-        'Pyrogenic cytokines such as interleukin-1, interleukin-6 and tumor necrosis factor influence prostaglandin pathways and increase the hypothalamic temperature set point.',
-    clinicalPresentation:
-        'Assess duration of fever, associated symptoms, feeding, urine output, activity, respiratory symptoms, vomiting, diarrhea, rash and possible focal infection. The child’s general appearance is particularly important.',
-    examination:
-        'Assess airway, breathing and circulation first. Record temperature, heart rate, respiratory rate, oxygen saturation, hydration and mental status. Examine skin, ears, throat, chest, abdomen and neurologic system.',
-    differentialDiagnosis:
-        'Viral infection, bacterial infection, urinary tract infection, pneumonia, meningitis, sepsis, inflammatory disease and drug-related fever.',
-    investigations:
-        'Investigations depend on age and clinical appearance. Urinalysis and urine culture may be important in young children. CBC, inflammatory markers, blood cultures, chest radiography or lumbar puncture are selected according to clinical findings.',
-    interpretation:
-        'Laboratory results should never replace clinical assessment. A well-appearing child with a clear viral syndrome may require limited testing, whereas a toxic-appearing child requires urgent evaluation for serious infection.',
+        'Common causes include viral respiratory infections, gastroenteritis, '
+        'urinary tract infection, otitis media and bacterial infections. Serious '
+        'causes include sepsis, meningitis, pneumonia, osteomyelitis and occult '
+        'bacterial infection. Neonates and young infants require particular caution.',
+    clinical:
+        'Assess temperature accurately and evaluate the child from the first moment. '
+        'Look at appearance, interaction, feeding, hydration, respiratory effort, '
+        'perfusion, urine output, rash, neurologic status and focal symptoms. '
+        'A toxic appearance is more concerning than the absolute temperature.',
     severity:
-        'Severity is determined by appearance, perfusion, respiratory effort, oxygenation, hydration, consciousness and the possibility of invasive bacterial infection.',
-    emergencyManagement:
-        'Perform ABC assessment, measure vital signs, assess hydration and identify sepsis or meningitis. Provide oxygen and circulatory support when indicated.',
-    definitiveManagement:
-        'Treat the underlying cause. Viral illnesses generally require supportive care. Confirmed or strongly suspected bacterial infection requires appropriate antimicrobial therapy according to age, site and local guidelines.',
-    pediatricDose:
-        'Paracetamol: commonly 10–15 mg/kg/dose orally every 4–6 hours when required. Check the maximum daily dose for age and local protocol. Ibuprofen may be considered in appropriate children, commonly 5–10 mg/kg/dose at appropriate intervals, provided there is no dehydration, renal disease or other contraindication.',
-    adultDose:
-        'Paracetamol: commonly 500–1000 mg orally every 4–6 hours when required, respecting the maximum daily dose and liver-risk considerations.',
-    contraindications:
-        'Consider contraindications to individual medications, including significant hepatic disease for paracetamol and dehydration or renal impairment for NSAIDs.',
-    adverseEffects:
-        'Paracetamol toxicity can cause severe hepatic injury in overdose. NSAIDs can cause gastrointestinal, renal and hypersensitivity complications.',
+        'High-risk features include altered consciousness, poor interaction, '
+        'respiratory distress, cyanosis, prolonged capillary refill, hypotension, '
+        'non-blanching rash, seizures, severe dehydration and inability to drink.',
+    differential:
+        'Viral infection, bacterial sepsis, meningitis, pneumonia, UTI, malaria '
+        'where epidemiologically relevant, inflammatory disease and malignancy.',
+    investigations:
+        'Investigations depend on age and clinical appearance. Urinalysis and urine '
+        'culture are important when UTI is possible. Blood tests and cultures are '
+        'appropriate in children with suspected serious bacterial infection. '
+        'Lumbar puncture is considered when meningitis is suspected and there is '
+        'no contraindication.',
+    diagnosis:
+        'The diagnosis is fever plus identification, when possible, of the underlying '
+        'cause. Never use response to an antipyretic as proof that a serious illness '
+        'is absent.',
+    management:
+        'Treat the underlying cause. Maintain hydration and continue breastfeeding '
+        'or appropriate oral fluids. Avoid over-bundling. Antipyretics may be used '
+        'for discomfort rather than simply to normalize the temperature. Serious '
+        'infection requires urgent antimicrobial and supportive management according '
+        'to the suspected source and local protocol.',
+    drugs:
+        'Paracetamol/acetaminophen: commonly 10–15 mg/kg per dose orally every '
+        '4–6 hours when needed. Do not exceed the recommended daily maximum for '
+        'the specific product or clinical protocol. Ibuprofen is commonly 5–10 '
+        'mg/kg per dose every 6–8 hours in children old enough to receive it, '
+        'but avoid it in significant dehydration, renal disease or other situations '
+        'where NSAIDs are contraindicated. Do not routinely combine antipyretics.',
     redFlags:
-        'Toxic appearance, altered consciousness, seizures, respiratory distress, cyanosis, poor perfusion, petechial or purpuric rash, severe dehydration and persistent inconsolability.',
+        'Age under 3 months with fever, toxic appearance, poor perfusion, respiratory '
+        'distress, meningism, seizure, altered consciousness, non-blanching rash, '
+        'severe dehydration or persistent deterioration.',
     admission:
-        'Consider admission for suspected sepsis, meningitis, significant dehydration, respiratory failure, altered consciousness, persistent hypoxemia or inability to maintain oral intake.',
+        'Consider admission for suspected sepsis, meningitis, severe pneumonia, '
+        'significant dehydration, persistent hypoxemia, altered consciousness or '
+        'high-risk young infants according to age-specific guidance.',
     discharge:
-        'Discharge is appropriate only when the child is clinically stable, serious infection has been reasonably excluded and caregivers understand warning signs and follow-up.',
-    clinicalPearls:
-        'Treat the child rather than the temperature number alone. General appearance, perfusion, respiratory status and neurologic status are more important than fever height alone.',
-    references:
-        'Nelson Textbook of Pediatrics; American Academy of Pediatrics guidance; WHO pediatric guidance.',
+        'Discharge only when the child is clinically stable, drinking adequately, '
+        'has no concerning examination findings and caregivers understand warning signs.',
+    keyPoints:
+        'Age, appearance, perfusion, breathing, hydration and neurologic status '
+        'are more important than the temperature number alone.',
+    reference:
+        'Nelson Textbook of Pediatrics, 22nd ed.; WHO pediatric guidance.',
   ),
 
-  MedicalTopic(
-    title: 'Bronchiolitis',
-    category: 'Pediatrics',
-    definition:
-        'Acute viral inflammation of the small airways, predominantly affecting infants and young children.',
-    causes:
-        'Respiratory syncytial virus is a common cause. Other respiratory viruses can produce the same clinical syndrome.',
-    riskFactors:
-        'Young age, prematurity, chronic lung disease, congenital heart disease and immunodeficiency increase the risk of severe disease.',
-    pathophysiology:
-        'Viral infection causes airway epithelial injury, edema, mucus production and small-airway obstruction.',
-    clinicalPresentation:
-        'Usually begins with rhinorrhea and cough followed by tachypnea, wheeze or crackles and increased work of breathing. Feeding difficulty is common.',
-    examination:
-        'Assess respiratory rate, retractions, grunting, nasal flaring, oxygen saturation, hydration, feeding and apnea.',
-    differentialDiagnosis:
-        'Asthma or viral-induced wheeze, pneumonia, foreign-body aspiration, congenital heart disease and sepsis.',
-    investigations:
-        'Typical bronchiolitis is diagnosed clinically. Routine blood tests and chest radiography are usually unnecessary.',
-    interpretation:
-        'Oxygen saturation should be interpreted with the clinical picture. Work of breathing and feeding ability are major determinants of severity.',
-    severity:
-        'Severe disease is suggested by apnea, marked retractions, exhaustion, cyanosis, hypoxemia or inability to feed.',
-    emergencyManagement:
-        'Provide supportive airway care, oxygen when indicated, appropriate suctioning of secretions and hydration support. Escalate respiratory support for severe disease.',
-    definitiveManagement:
-        'Treatment is mainly supportive. Routine antibiotics, corticosteroids and bronchodilators are not recommended for uncomplicated bronchiolitis.',
-    pediatricDose:
-        'Medication therapy is generally not routinely required. If another diagnosis is present, treat according to that diagnosis and local pediatric protocol.',
-    adultDose:
-        'Not applicable to typical infant bronchiolitis.',
-    contraindications:
-        'Avoid unnecessary medication and diagnostic interventions in uncomplicated disease.',
-    adverseEffects:
-        'Unnecessary medications may cause adverse effects without clinical benefit.',
-    redFlags:
-        'Apnea, cyanosis, severe respiratory distress, exhaustion, dehydration, persistent hypoxemia or inability to feed.',
-    admission:
-        'Consider admission for apnea, significant hypoxemia, severe respiratory distress, dehydration or inability to maintain adequate feeding.',
-    discharge:
-        'Discharge when respiratory status and feeding are adequate and caregivers understand deterioration signs.',
-    clinicalPearls:
-        'The most important treatment is supportive care and repeated assessment of respiratory effort, oxygenation and hydration.',
-    references:
-        'Nelson Textbook of Pediatrics; NICE Bronchiolitis guideline; WHO respiratory guidance.',
-  ),
+  // ==========================================================
+  // 2. CROUP
+  // ==========================================================
 
-  MedicalTopic(
+  PediatricTopic(
     title: 'Croup',
-    category: 'Pediatrics',
+    category: 'Respiratory Pediatrics',
     definition:
-        'An acute upper-airway illness characterized by barking cough, hoarseness and inspiratory stridor, most commonly caused by viral infection.',
+        'Croup is an acute upper-airway syndrome characterized by barking cough, '
+        'hoarseness and inspiratory stridor, most commonly caused by viral infection.',
     causes:
-        'Usually viral, especially parainfluenza viruses. Bacterial tracheitis and other dangerous upper-airway conditions must be considered when presentation is atypical.',
-    riskFactors:
-        'Young age, previous episodes and exposure to respiratory viruses.',
-    pathophysiology:
-        'Subglottic airway edema narrows the airway and produces the characteristic barking cough and stridor.',
-    clinicalPresentation:
-        'Barking cough, hoarseness and inspiratory stridor, often worse at night. Severity is assessed by stridor at rest and work of breathing.',
-    examination:
-        'Keep the child calm. Assess stridor, retractions, air entry, oxygenation, mental status and fatigue.',
-    differentialDiagnosis:
-        'Epiglottitis, bacterial tracheitis, foreign-body aspiration, anaphylaxis and retropharyngeal infection.',
-    investigations:
-        'Typical croup is a clinical diagnosis. Avoid unnecessary investigations that may agitate the child.',
-    interpretation:
-        'Stridor at rest and increasing work of breathing indicate more significant obstruction.',
+        'Parainfluenza viruses are classic causes. Other respiratory viruses may '
+        'produce a similar syndrome.',
+    clinical:
+        'Typical symptoms are barking cough, hoarseness and inspiratory stridor. '
+        'Symptoms frequently become worse at night. Assess stridor at rest, work '
+        'of breathing, air entry, mental state and oxygenation.',
     severity:
-        'Mild disease usually has barking cough without stridor at rest. More severe disease has persistent stridor, retractions or fatigue.',
-    emergencyManagement:
-        'Keep the child calm and minimize airway stimulation. Give corticosteroid therapy according to severity. Nebulized epinephrine may be used for significant upper-airway obstruction.',
-    definitiveManagement:
-        'Most cases improve with supportive care and corticosteroid therapy. Significant cases require observation after nebulized epinephrine and escalation if symptoms recur.',
-    pediatricDose:
-        'Dexamethasone is commonly used in croup; dosing depends on the chosen guideline and severity. Nebulized epinephrine is used for significant obstruction according to the local emergency protocol.',
-    adultDose:
-        'Adult croup is uncommon; management should be individualized.',
-    contraindications:
-        'Medication selection and dosing must consider allergy, route and clinical severity.',
-    adverseEffects:
-        'Epinephrine may cause transient tachycardia, tremor and pallor.',
-    redFlags:
-        'Stridor at rest, severe retractions, cyanosis, exhaustion, altered consciousness and poor air entry.',
-    admission:
-        'Admit or observe closely when significant stridor persists, repeated epinephrine is required or airway compromise is suspected.',
-    discharge:
-        'Only when symptoms have improved, the child is clinically stable and appropriate observation has been completed.',
-    clinicalPearls:
-        'Do not force an upset child to lie down or undergo unnecessary throat examination when severe upper-airway obstruction is suspected.',
-    references:
-        'Nelson Textbook of Pediatrics; NICE guidance; American Academy of Pediatrics resources.',
-  ),
-
-  MedicalTopic(
-    title: 'Pediatric Asthma Exacerbation',
-    category: 'Pediatrics',
-    definition:
-        'Acute worsening of asthma caused by increased airway inflammation, bronchoconstriction and airflow limitation.',
-    causes:
-        'Viral infection, allergens, smoke exposure, poor adherence, exercise and other triggers may precipitate an exacerbation.',
-    riskFactors:
-        'Previous severe exacerbation, frequent reliever use, poor controller adherence and environmental exposures.',
-    pathophysiology:
-        'Bronchial smooth-muscle constriction, mucosal edema and mucus production produce airflow limitation.',
-    clinicalPresentation:
-        'Wheeze, cough, dyspnea, chest tightness, tachypnea and increased work of breathing.',
-    examination:
-        'Assess ability to speak or feed, respiratory rate, retractions, air entry, wheeze, mental state and oxygen saturation.',
-    differentialDiagnosis:
-        'Bronchiolitis, pneumonia, foreign-body aspiration, anaphylaxis, pneumothorax and cardiac disease.',
+        'Mild disease has barking cough without stridor at rest. More significant '
+        'disease has stridor at rest and retractions. Severe disease may involve '
+        'marked retractions, agitation or fatigue, poor air entry, cyanosis or '
+        'altered consciousness.',
+    differential:
+        'Epiglottitis, bacterial tracheitis, foreign-body aspiration, anaphylaxis, '
+        'retropharyngeal infection and other upper-airway obstruction.',
     investigations:
-        'Clinical assessment and oxygen saturation are central. Peak flow can be used in cooperative older children when appropriate.',
-    interpretation:
-        'A silent chest in a deteriorating patient indicates severe airflow limitation and is not reassuring.',
-    severity:
-        'Severity is based on respiratory effort, speech or feeding ability, oxygenation, mental status and response to initial bronchodilator therapy.',
-    emergencyManagement:
-        'Give rapid-acting inhaled bronchodilator therapy, oxygen when indicated and systemic corticosteroid therapy for appropriate moderate or severe exacerbations.',
-    definitiveManagement:
-        'Identify triggers, optimize controller therapy and provide an asthma action plan after stabilization.',
-    pediatricDose:
-        'Salbutamol dosing depends on age, device and severity; use the local pediatric asthma protocol. Systemic corticosteroid dosing should likewise follow the local protocol.',
-    adultDose:
-        'Use repeated inhaled short-acting bronchodilator therapy and systemic corticosteroids according to adult asthma emergency guidelines.',
-    contraindications:
-        'Consider tachyarrhythmia and other clinical factors when selecting bronchodilator therapy.',
-    adverseEffects:
-        'Beta-agonists may cause tremor, tachycardia and hypokalemia.',
+        'Typical croup is diagnosed clinically. Routine blood tests and radiographs '
+        'are not necessary in an uncomplicated presentation.',
+    diagnosis:
+        'Clinical diagnosis based on barking cough, hoarseness and characteristic '
+        'stridor after excluding dangerous alternative causes.',
+    management:
+        'Keep the child calm and with the caregiver. Avoid unnecessary throat '
+        'examination or procedures that provoke agitation. Give corticosteroid '
+        'therapy according to severity. Nebulized epinephrine is used for significant '
+        'stridor at rest or severe obstruction, followed by observation.',
+    drugs:
+        'Dexamethasone: commonly 0.15–0.6 mg/kg as a single dose depending on '
+        'severity and local protocol. Nebulized epinephrine/adrenaline may be used '
+        'for moderate or severe croup according to the emergency protocol and '
+        'appropriate preparation/concentration. Repeated treatment requires clinical '
+        'reassessment and monitoring.',
     redFlags:
-        'Silent chest, exhaustion, cyanosis, altered consciousness, severe hypoxemia or failure to respond to initial therapy.',
+        'Stridor at rest, severe retractions, cyanosis, exhaustion, altered '
+        'consciousness, poor air entry or rapidly progressive obstruction.',
     admission:
-        'Admission is considered for severe attacks, persistent hypoxemia, poor response to initial treatment or unsafe home circumstances.',
+        'Consider admission when symptoms remain significant after treatment, '
+        'repeated nebulized epinephrine is required, oxygenation is abnormal or '
+        'there is concern for another serious airway diagnosis.',
     discharge:
-        'Discharge only after sustained improvement and an appropriate follow-up and controller plan.',
-    clinicalPearls:
-        'A decreasing wheeze accompanied by worsening fatigue can indicate deterioration rather than improvement.',
-    references:
-        'Nelson Textbook of Pediatrics; GINA Global Strategy for Asthma; NICE asthma guidance.',
-  ),
-
-  MedicalTopic(
-    title: 'Pediatric Pneumonia',
-    category: 'Pediatrics',
-    definition:
-        'Infection of the lower respiratory tract involving lung parenchyma.',
-    causes:
-        'Viral and bacterial pathogens vary with age, vaccination status and epidemiology.',
-    riskFactors:
-        'Young age, incomplete vaccination, chronic disease, malnutrition and immunodeficiency.',
-    pathophysiology:
-        'Inflammatory infection of the lung causes impaired ventilation and may impair oxygenation.',
-    clinicalPresentation:
-        'Fever, cough, tachypnea, respiratory distress and reduced feeding may occur.',
-    examination:
-        'Assess respiratory rate, work of breathing, oxygen saturation, hydration and focal chest findings.',
-    differentialDiagnosis:
-        'Bronchiolitis, asthma, aspiration, heart failure and viral upper respiratory infection.',
-    investigations:
-        'Clinical assessment is central. Imaging and laboratory tests are reserved for selected or severe cases.',
-    interpretation:
-        'Hypoxemia, severe work of breathing and systemic toxicity suggest more serious disease.',
-    severity:
-        'Assess oxygenation, respiratory distress, hydration, mental status and sepsis features.',
-    emergencyManagement:
-        'Support airway and breathing, provide oxygen when indicated, establish vascular access when necessary and treat suspected bacterial infection promptly.',
-    definitiveManagement:
-        'Antibiotic selection depends on age, severity, suspected pathogen and local resistance patterns.',
-    pediatricDose:
-        'Antibiotic choice and dose must be selected according to age, weight, site of infection and local pediatric antimicrobial guidelines.',
-    adultDose:
-        'Adult pneumonia therapy depends on severity, comorbidities and local antimicrobial guidance.',
-    contraindications:
-        'Check allergies, renal function and drug interactions before antimicrobial therapy.',
-    adverseEffects:
-        'Antibiotics may cause gastrointestinal effects, allergy, drug-specific toxicity and antimicrobial resistance.',
-    redFlags:
-        'Hypoxemia, severe respiratory distress, shock, altered consciousness, dehydration or suspected sepsis.',
-    admission:
-        'Admit children with severe respiratory distress, hypoxemia, inability to drink, sepsis or significant comorbidity.',
-    discharge:
-        'Only after stable oxygenation, adequate hydration and appropriate treatment/follow-up plan.',
-    clinicalPearls:
-        'Always assess oxygenation and work of breathing, not simply the presence of fever and cough.',
-    references:
-        'Nelson Textbook of Pediatrics; WHO childhood pneumonia guidance; NICE pneumonia guidance.',
+        'Appropriate when stridor at rest has resolved, the child is clinically '
+        'stable and caregivers understand return precautions.',
+    keyPoints:
+        'Agitation worsens upper-airway obstruction. Calm handling is part of treatment.',
+    reference:
+        'Nelson Textbook of Pediatrics, 22nd ed.; pediatric respiratory guidance.',
   ),
 
   // ==========================================================
-  // INTERNAL MEDICINE
+  // 3. BRONCHIOLITIS
   // ==========================================================
 
-  MedicalTopic(
-    title: 'Diabetic Ketoacidosis',
-    category: 'Internal Medicine',
+  PediatricTopic(
+    title: 'Bronchiolitis',
+    category: 'Respiratory Pediatrics',
     definition:
-        'A metabolic emergency characterized by insulin deficiency, hyperglycemia or diabetes-associated glucose disturbance, ketosis and metabolic acidosis.',
+        'Bronchiolitis is an acute viral lower respiratory tract infection, usually '
+        'affecting infants and young children and causing small-airway inflammation.',
     causes:
-        'New diabetes, missed insulin, infection, myocardial infarction, stroke, pancreatitis, medications and other physiologic stressors.',
-    riskFactors:
-        'Known diabetes, insulin interruption, infection and previous DKA.',
-    pathophysiology:
-        'Insulin deficiency and counter-regulatory hormone excess promote lipolysis, ketogenesis, hyperglycemia and osmotic diuresis.',
-    clinicalPresentation:
-        'Polyuria, polydipsia, dehydration, nausea, vomiting, abdominal pain, Kussmaul breathing and altered mental status.',
-    examination:
-        'Assess airway, breathing, circulation, hydration, mental status, temperature and precipitating illness.',
-    differentialDiagnosis:
-        'HHS, starvation ketosis, lactic acidosis, toxic alcohols and other causes of high-anion-gap metabolic acidosis.',
-    investigations:
-        'Glucose, ketones, electrolytes, venous or arterial blood gas, renal function, CBC, ECG and evaluation for precipitating infection or ischemia.',
-    interpretation:
-        'Calculate anion gap when appropriate and monitor potassium closely because insulin therapy shifts potassium intracellularly.',
+        'Respiratory syncytial virus is a common cause. Other respiratory viruses '
+        'may produce the same clinical syndrome.',
+    clinical:
+        'Usually begins with rhinorrhea and cough followed by tachypnea, wheezing '
+        'or crackles and increased work of breathing. Young infants may develop '
+        'feeding difficulty or apnea.',
     severity:
-        'Severity depends on acidosis, hemodynamic status, mental status, electrolyte abnormalities and associated organ dysfunction.',
-    emergencyManagement:
-        'Careful isotonic fluid replacement, insulin therapy after appropriate potassium assessment, electrolyte replacement and treatment of the precipitating cause.',
-    definitiveManagement:
-        'Continue protocolized therapy until ketoacidosis resolves, then transition safely to a long-term diabetes regimen.',
-    pediatricDose:
-        'Pediatric DKA requires a dedicated pediatric protocol because fluid and insulin management differs from adults and cerebral edema is a major concern.',
-    adultDose:
-        'Adult insulin and fluid dosing should follow the current institutional DKA protocol with frequent glucose, electrolyte and acid-base reassessment.',
-    contraindications:
-        'Do not administer insulin without considering potassium status. Avoid inappropriate rapid fluid administration in patients at risk of overload.',
-    adverseEffects:
-        'Hypoglycemia, hypokalemia, cerebral complications and fluid overload can occur during treatment.',
-    redFlags:
-        'Shock, severe acidosis, altered consciousness, major potassium abnormality, severe dehydration and signs of cerebral complications.',
-    admission:
-        'DKA generally requires monitored inpatient treatment; severe cases require critical care.',
-    discharge:
-        'After resolution of ketoacidosis, stable oral intake, appropriate insulin plan and reliable follow-up.',
-    clinicalPearls:
-        'Potassium monitoring is essential throughout insulin therapy.',
-    references:
-        'Harrison’s Principles of Internal Medicine; ADA Standards of Care; international DKA consensus guidance.',
-  ),
-
-  MedicalTopic(
-    title: 'Acute Coronary Syndrome',
-    category: 'Internal Medicine',
-    definition:
-        'A spectrum of acute myocardial ischemic syndromes including unstable angina and myocardial infarction.',
-    causes:
-        'Usually acute coronary plaque disruption with thrombosis, although supply-demand mismatch can also cause myocardial injury.',
-    riskFactors:
-        'Smoking, diabetes, hypertension, dyslipidemia, obesity, chronic kidney disease and established cardiovascular disease.',
-    pathophysiology:
-        'Coronary artery obstruction causes myocardial ischemia and potentially irreversible necrosis.',
-    clinicalPresentation:
-        'Chest pressure, heaviness or pain may radiate to the arm, jaw or back. Dyspnea, diaphoresis, nausea and atypical presentations can occur.',
-    examination:
-        'Assess vital signs, perfusion, heart failure, arrhythmia and alternative life-threatening diagnoses.',
-    differentialDiagnosis:
-        'Aortic dissection, pulmonary embolism, pneumothorax, pericarditis, esophageal disease and musculoskeletal pain.',
+        'Assess respiratory rate, retractions, apnea, cyanosis, oxygen saturation, '
+        'feeding ability, hydration and mental state.',
+    differential:
+        'Asthma or viral-induced wheeze, pneumonia, aspiration, congenital heart '
+        'disease and airway abnormalities.',
     investigations:
-        'Immediate ECG and serial high-sensitivity cardiac troponin according to an appropriate diagnostic pathway. Additional tests depend on the clinical scenario.',
-    interpretation:
-        'Interpret troponin dynamically and in clinical context. A single normal result may not exclude early myocardial infarction.',
-    severity:
-        'Assess ischemic risk, hemodynamic stability, heart failure, arrhythmia and bleeding risk.',
-    emergencyManagement:
-        'Activate an ACS pathway, obtain ECG promptly, provide appropriate antithrombotic treatment and arrange urgent reperfusion when indicated.',
-    definitiveManagement:
-        'STEMI generally requires urgent reperfusion. NSTE-ACS management is based on ischemic and bleeding risk.',
-    pediatricDose:
-        'Not routinely applicable to pediatric patients.',
-    adultDose:
-        'Medication selection and dosing should follow the current ACS protocol, including antiplatelet and anticoagulant therapy when indicated.',
-    contraindications:
-        'Antithrombotic treatment requires assessment of bleeding risk and contraindications. Do not give therapies contraindicated by suspected aortic dissection.',
-    adverseEffects:
-        'Bleeding, hypotension and drug-specific adverse effects must be monitored.',
+        'Typical bronchiolitis is a clinical diagnosis. Routine chest radiography '
+        'and routine blood tests are generally unnecessary.',
+    diagnosis:
+        'Clinical diagnosis based on the typical age, viral prodrome and lower '
+        'respiratory signs.',
+    management:
+        'Supportive treatment is the cornerstone. Maintain hydration and feeding. '
+        'Clear nasal secretions when needed. Provide oxygen when clinically indicated. '
+        'Escalate respiratory support when there is significant respiratory failure.',
+    drugs:
+        'Routine antibiotics, corticosteroids and bronchodilators are not indicated '
+        'for uncomplicated typical bronchiolitis. Fluids may be given orally, '
+        'enterally or intravenously depending on hydration and respiratory status.',
     redFlags:
-        'STEMI, cardiogenic shock, malignant arrhythmia, acute pulmonary edema or refractory ischemia.',
+        'Apnea, cyanosis, severe respiratory distress, exhaustion, inability to feed, '
+        'dehydration or persistent hypoxemia.',
     admission:
-        'Suspected ACS requires monitored hospital assessment.',
+        'Consider admission for apnea, significant hypoxemia, severe work of breathing, '
+        'dehydration, inability to maintain feeds or high-risk infants.',
     discharge:
-        'Only after appropriate risk stratification and treatment plan.',
-    clinicalPearls:
-        'Always consider other immediately fatal causes of chest pain before assuming ACS.',
-    references:
-        'Harrison’s Principles of Internal Medicine; ESC ACS guidance; ACC/AHA guidance.',
-  ),
-
-  MedicalTopic(
-    title: 'Heart Failure',
-    category: 'Internal Medicine',
-    definition:
-        'A clinical syndrome caused by structural or functional cardiac abnormality resulting in impaired cardiac output, elevated filling pressures or both.',
-    causes:
-        'Ischemic heart disease, hypertension, valvular disease, cardiomyopathy, arrhythmias and inflammatory causes.',
-    riskFactors:
-        'Hypertension, diabetes, coronary disease, obesity, renal disease and cardiotoxic medications.',
-    pathophysiology:
-        'Neurohormonal activation, remodeling and impaired cardiac function lead to congestion and reduced effective circulation.',
-    clinicalPresentation:
-        'Dyspnea, orthopnea, paroxysmal nocturnal dyspnea, edema, fatigue and exercise intolerance.',
-    examination:
-        'Assess blood pressure, oxygenation, lung crackles, jugular venous pressure, peripheral edema and perfusion.',
-    differentialDiagnosis:
-        'COPD/asthma, pneumonia, pulmonary embolism, renal disease, anemia and deconditioning.',
-    investigations:
-        'ECG, chest imaging, natriuretic peptides and echocardiography are commonly used.',
-    interpretation:
-        'Determine whether the patient is congested, hypoperfused or both and identify the precipitating cause.',
-    severity:
-        'Acute pulmonary edema, hypotension, hypoxemia and cardiogenic shock indicate severe disease.',
-    emergencyManagement:
-        'Provide oxygen or ventilatory support when indicated, treat severe congestion and identify precipitants such as ACS or arrhythmia.',
-    definitiveManagement:
-        'Long-term therapy depends on ejection fraction phenotype and includes guideline-directed pharmacologic and device therapy where appropriate.',
-    pediatricDose:
-        'Pediatric heart failure requires specialist assessment and age-specific therapy.',
-    adultDose:
-        'Diuretics and guideline-directed heart-failure medications should be selected according to phenotype, renal function, blood pressure and current guidelines.',
-    contraindications:
-        'Therapy must account for renal function, potassium, blood pressure and volume status.',
-    adverseEffects:
-        'Diuretics can cause electrolyte abnormalities; neurohormonal therapies can cause hypotension, renal dysfunction or hyperkalemia.',
-    redFlags:
-        'Cardiogenic shock, severe pulmonary edema, hypoxemia, hypotension or rapidly worsening respiratory distress.',
-    admission:
-        'Acute decompensated heart failure with hypoxemia, significant congestion or hemodynamic instability generally requires admission.',
-    discharge:
-        'After clinical stabilization and optimization of long-term treatment.',
-    clinicalPearls:
-        'Always search for the precipitating cause of acute decompensation.',
-    references:
-        'Harrison’s Principles of Internal Medicine; ESC Heart Failure Guidelines; ACC/AHA/HFSA guidance.',
+        'Stable respiratory effort, adequate oxygenation and adequate oral intake '
+        'with reliable caregiver observation.',
+    keyPoints:
+        'Bronchiolitis is primarily a supportive-care disease. Avoid unnecessary '
+        'medications and investigations.',
+    reference:
+        'Nelson Textbook of Pediatrics, 22nd ed.; NICE/WHO respiratory guidance.',
   ),
 
   // ==========================================================
-  // EMERGENCY MEDICINE
+  // 4. ASTHMA
   // ==========================================================
 
-  MedicalTopic(
+  PediatricTopic(
+    title: 'Acute Asthma Exacerbation',
+    category: 'Respiratory Pediatrics',
+    definition:
+        'An acute exacerbation is a worsening of asthma symptoms and airflow '
+        'limitation caused by increased airway inflammation and bronchoconstriction.',
+    causes:
+        'Viral respiratory infection, allergens, smoke exposure, poor adherence, '
+        'exercise and other triggers may precipitate attacks.',
+    clinical:
+        'Wheeze, cough, dyspnea, chest tightness and increased work of breathing. '
+        'Assess speech, mental state, respiratory rate, heart rate, oxygen saturation, '
+        'air entry and response to initial bronchodilator therapy.',
+    severity:
+        'Severity ranges from mild symptoms to life-threatening asthma with exhaustion, '
+        'altered consciousness, severe hypoxemia or a silent chest.',
+    differential:
+        'Bronchiolitis, pneumonia, foreign body, anaphylaxis, pneumothorax and cardiac disease.',
+    investigations:
+        'Oxygen saturation is useful in acute attacks. Peak flow can be used in '
+        'cooperative older children. Imaging is not routinely required for typical asthma.',
+    diagnosis:
+        'Clinical diagnosis supported by previous asthma history and objective evidence '
+        'when available.',
+    management:
+        'Rapidly assess ABCs. Give inhaled short-acting bronchodilator. Add systemic '
+        'corticosteroid for significant exacerbations. Give controlled oxygen when '
+        'hypoxemic. Severe or refractory attacks require escalation and senior review.',
+    drugs:
+        'Salbutamol/albuterol: dose depends on age and delivery device; nebulized '
+        'therapy or multiple puffs by spacer are commonly used according to severity. '
+        'Prednisolone is commonly used at approximately 1–2 mg/kg/day for a short '
+        'course in children when systemic corticosteroid is indicated, with local '
+        'maximum-dose limits. Ipratropium may be added in severe attacks according '
+        'to protocol. IV magnesium sulfate may be considered in severe refractory '
+        'asthma under monitored care.',
+    redFlags:
+        'Silent chest, exhaustion, cyanosis, altered consciousness, inability to speak '
+        'or feed, severe hypoxemia or poor response to initial therapy.',
+    admission:
+        'Admission is considered for severe attacks, persistent hypoxemia, significant '
+        'work of breathing, repeated bronchodilator requirement or poor response.',
+    discharge:
+        'Symptoms controlled, oxygenation stable, bronchodilator requirement reduced, '
+        'caregiver understands inhaler technique and an asthma action plan is provided.',
+    keyPoints:
+        'A silent chest in a deteriorating child means very poor airflow and is an emergency.',
+    reference:
+        'Nelson Textbook of Pediatrics, 22nd ed.; GINA pediatric asthma strategy.',
+  ),
+
+  // ==========================================================
+  // 5. PNEUMONIA
+  // ==========================================================
+
+  PediatricTopic(
+    title: 'Community-Acquired Pneumonia',
+    category: 'Respiratory / Infectious Pediatrics',
+    definition:
+        'Pneumonia is infection of the lower respiratory tract and lung parenchyma.',
+    causes:
+        'Viruses are common, particularly in younger children. Bacterial pathogens '
+        'remain important, especially with focal findings or severe disease.',
+    clinical:
+        'Fever, cough, tachypnea and increased work of breathing are common. Chest '
+        'findings may include crackles or focal decreased breath sounds. Assess '
+        'oxygenation, hydration and general appearance.',
+    severity:
+        'Severe disease includes hypoxemia, severe respiratory distress, inability '
+        'to drink, altered consciousness, shock or complications.',
+    differential:
+        'Bronchiolitis, asthma, viral upper respiratory infection, aspiration, '
+        'foreign body and heart failure.',
+    investigations:
+        'Pulse oximetry is important in significant illness. Chest radiography is '
+        'reserved for selected cases. Blood testing and cultures are considered '
+        'in severe or hospitalized disease.',
+    diagnosis:
+        'Clinical diagnosis supported by examination and selected investigations.',
+    management:
+        'Provide supportive care, oxygen if indicated, hydration and appropriate '
+        'antimicrobial treatment when bacterial pneumonia is suspected. Severe '
+        'disease requires hospital management.',
+    drugs:
+        'Antibiotic selection depends on age, severity, vaccination status, local '
+        'resistance and guideline. Amoxicillin is commonly used for uncomplicated '
+        'outpatient bacterial pneumonia in children, with weight-based dosing '
+        'according to local pediatric guideline. Severe hospitalized disease may '
+        'require parenteral beta-lactam therapy and additional coverage according '
+        'to local resistance and complications.',
+    redFlags:
+        'Hypoxemia, severe retractions, grunting, cyanosis, inability to drink, '
+        'altered consciousness, shock or suspected sepsis.',
+    admission:
+        'Severe respiratory distress, hypoxemia, dehydration, altered mental state, '
+        'young high-risk age or inability to receive oral therapy.',
+    discharge:
+        'Stable oxygenation, improving respiratory effort, adequate hydration and '
+        'reliable follow-up.',
+    keyPoints:
+        'Always assess respiratory rate, oxygenation, hydration and general appearance.',
+    reference:
+        'Nelson Textbook of Pediatrics, 22nd ed.; WHO childhood pneumonia guidance.',
+  ),
+
+  // ==========================================================
+  // 6. GASTROENTERITIS / DEHYDRATION
+  // ==========================================================
+
+  PediatricTopic(
+    title: 'Acute Gastroenteritis and Dehydration',
+    category: 'Gastroenterology',
+    definition:
+        'Acute gastroenteritis commonly causes diarrhea and/or vomiting and may '
+        'lead to dehydration and electrolyte disturbances.',
+    causes:
+        'Viruses are common. Bacterial and parasitic causes depend on epidemiology, '
+        'food exposure and travel.',
+    clinical:
+        'Assess frequency of stool and vomiting, thirst, mucous membranes, tears, '
+        'urine output, capillary refill, pulse, mental status, skin perfusion and '
+        'weight when available.',
+    severity:
+        'Mild dehydration causes increased thirst and reduced urine. More severe '
+        'dehydration produces dry mucosa, poor perfusion, tachycardia and lethargy. '
+        'Shock is a medical emergency.',
+    differential:
+        'Sepsis, DKA, surgical abdomen, intussusception, toxic ingestion and metabolic disease.',
+    investigations:
+        'Most uncomplicated cases need no laboratory testing. Electrolytes, glucose '
+        'and renal function are considered in severe dehydration, prolonged illness '
+        'or atypical presentation.',
+    diagnosis:
+        'Clinical diagnosis based on gastrointestinal symptoms and assessment of hydration.',
+    management:
+        'Oral rehydration solution is preferred when the child can drink. Continue '
+        'breastfeeding and appropriate feeding. Severe dehydration or shock requires '
+        'carefully monitored isotonic IV fluid therapy.',
+    drugs:
+        'Oral rehydration solution is given in small frequent amounts according to '
+        'degree of dehydration and local protocol. Ondansetron may be considered '
+        'in selected children with significant vomiting to facilitate oral hydration; '
+        'a commonly used pediatric regimen is about 0.1–0.15 mg/kg per dose, subject '
+        'to age, maximum dose and local protocol. Antidiarrheal agents are generally '
+        'not routinely recommended in young children.',
+    redFlags:
+        'Shock, altered consciousness, severe dehydration, bilious vomiting, blood '
+        'in stool, severe abdominal pain, persistent vomiting or suspected surgical abdomen.',
+    admission:
+        'Shock, severe dehydration, inability to maintain oral hydration, significant '
+        'electrolyte abnormality or serious alternative diagnosis.',
+    discharge:
+        'Adequate hydration, tolerating oral fluids, improving symptoms and caregivers '
+        'able to continue ORS and recognize warning signs.',
+    keyPoints:
+        'Correct dehydration first. Oral rehydration is the foundation of treatment.',
+    reference:
+        'Nelson Textbook of Pediatrics, 22nd ed.; WHO diarrheal disease guidance.',
+  ),
+
+  // ==========================================================
+  // 7. FEBRILE SEIZURE
+  // ==========================================================
+
+  PediatricTopic(
+    title: 'Febrile Seizure',
+    category: 'Neurology',
+    definition:
+        'A seizure occurring in a child with fever, generally between 6 months and '
+        '5 years, without evidence of CNS infection or another acute symptomatic cause.',
+    causes:
+        'Usually associated with common febrile illnesses and genetic susceptibility.',
+    clinical:
+        'Simple febrile seizure is generalized, short and does not recur during the '
+        'same febrile illness. Complex features include focality, prolonged duration '
+        'or recurrence.',
+    severity:
+        'Any seizure lasting 5 minutes or more requires emergency seizure management.',
+    differential:
+        'Meningitis, encephalitis, epilepsy, hypoglycemia, electrolyte disturbance, '
+        'toxic ingestion and intracranial pathology.',
+    investigations:
+        'Investigations target the cause of fever. Routine neuroimaging or EEG is not '
+        'required for every simple febrile seizure.',
+    diagnosis:
+        'Clinical diagnosis after excluding CNS infection and other acute causes.',
+    management:
+        'Protect from injury, position safely and assess ABCs. Check glucose in a '
+        'prolonged or atypical seizure. Treat ongoing prolonged seizure according '
+        'to the pediatric seizure protocol.',
+    drugs:
+        'For a prolonged seizure, a benzodiazepine is generally first-line. Examples '
+        'include buccal/intranasal midazolam or IV/rectal diazepam according to local '
+        'protocol, age and available route. Exact dosing should follow the institutional '
+        'status-epilepticus algorithm.',
+    redFlags:
+        'Meningeal signs, persistent altered consciousness, focal seizure, prolonged '
+        'seizure, recurrent seizures or toxic appearance.',
+    admission:
+        'Complex seizure, suspected CNS infection, persistent altered consciousness, '
+        'serious underlying illness or abnormal neurologic examination.',
+    discharge:
+        'Simple febrile seizure with normal neurologic assessment and treated source '
+        'of fever, provided caregivers receive seizure first-aid advice.',
+    keyPoints:
+        'Febrile seizure is not synonymous with epilepsy.',
+    reference:
+        'Nelson Textbook of Pediatrics, 22nd ed.; AAP/NICE seizure guidance.',
+  ),
+
+  // ==========================================================
+  // 8. MENINGITIS
+  // ==========================================================
+
+  PediatricTopic(
+    title: 'Meningitis',
+    category: 'Infectious Disease / Emergency',
+    definition:
+        'Meningitis is inflammation of the meninges. Bacterial meningitis is a '
+        'time-critical medical emergency.',
+    causes:
+        'Bacterial, viral and less commonly fungal or other infectious causes.',
+    clinical:
+        'Fever, headache, vomiting, neck stiffness, photophobia, altered consciousness '
+        'and seizures may occur. Infants may present with irritability, poor feeding, '
+        'bulging fontanelle or nonspecific illness.',
+    severity:
+        'Severe disease may cause shock, seizures, coma, respiratory failure and multiorgan dysfunction.',
+    differential:
+        'Encephalitis, sepsis without meningitis, intracranial abscess, metabolic '
+        'encephalopathy and toxic ingestion.',
+    investigations:
+        'Blood cultures and appropriate laboratory studies should be obtained promptly. '
+        'Lumbar puncture is important when safe. Neuroimaging is reserved for selected '
+        'patients and must not cause dangerous treatment delay.',
+    diagnosis:
+        'Clinical suspicion supported by CSF analysis, culture and molecular testing '
+        'where available.',
+    management:
+        'ABC stabilization and urgent empiric antimicrobial therapy are priorities. '
+        'Treat seizures, shock, hypoglycemia and raised intracranial pressure when present. '
+        'Follow local age-specific meningitis protocol.',
+    drugs:
+        'Empiric antibiotic selection is strongly age- and epidemiology-dependent and '
+        'commonly includes a third-generation cephalosporin with additional coverage '
+        'when indicated. Dexamethasone may be considered in selected bacterial meningitis '
+        'scenarios according to guideline. Exact neonatal and pediatric doses should follow '
+        'the hospital meningitis protocol.',
+    redFlags:
+        'Purpuric rash, shock, seizures, reduced consciousness, focal neurologic deficit '
+        'or rapidly progressive deterioration.',
+    admission:
+        'All suspected bacterial meningitis cases require hospital-level management.',
+    discharge:
+        'Only after adequate treatment, clinical recovery and appropriate follow-up.',
+    keyPoints:
+        'Do not delay life-saving antimicrobial therapy because of difficulty obtaining LP.',
+    reference:
+        'Nelson Textbook of Pediatrics, 22nd ed.; WHO meningitis guidance.',
+  ),
+
+  // ==========================================================
+  // 9. SEPSIS
+  // ==========================================================
+
+  PediatricTopic(
+    title: 'Pediatric Sepsis',
+    category: 'Emergency / Critical Care',
+    definition:
+        'Sepsis is life-threatening organ dysfunction caused by a dysregulated '
+        'response to infection.',
+    causes:
+        'Bacterial, viral, fungal and other infections can cause sepsis.',
+    clinical:
+        'Look for abnormal temperature, tachycardia, tachypnea, altered mental status, '
+        'poor perfusion, hypotension, oliguria and respiratory failure.',
+    severity:
+        'Shock, altered consciousness, severe hypoxemia, poor perfusion and multiorgan '
+        'dysfunction indicate critical illness.',
+    differential:
+        'Hemorrhage, anaphylaxis, cardiogenic shock, adrenal crisis and toxic/metabolic causes.',
+    investigations:
+        'Blood cultures where appropriate, CBC, glucose, electrolytes, renal and liver '
+        'function, lactate when available, coagulation studies and source-directed imaging.',
+    diagnosis:
+        'Clinical syndrome of infection with organ dysfunction.',
+    management:
+        'Immediate ABC assessment. Obtain cultures when this does not delay antibiotics. '
+        'Start appropriate empiric antimicrobial therapy promptly when bacterial sepsis is '
+        'suspected. Give carefully reassessed fluid boluses when indicated and use vasoactive '
+        'support when shock persists.',
+    drugs:
+        'Antibiotics depend on suspected source and local resistance. Isotonic crystalloid '
+        'is commonly used for fluid resuscitation, with frequent reassessment to avoid fluid '
+        'overload. Vasoactive agents such as epinephrine or norepinephrine may be required '
+        'in fluid-refractory shock under intensive monitoring.',
+    redFlags:
+        'Shock, altered consciousness, severe hypoxemia, oliguria, mottling, prolonged '
+        'capillary refill or rapidly progressive organ dysfunction.',
+    admission:
+        'Suspected septic shock or significant organ dysfunction requires hospital care '
+        'and often PICU involvement.',
+    discharge:
+        'Only after source control, hemodynamic stability, improving organ function and '
+        'appropriate antimicrobial plan.',
+    keyPoints:
+        'Early recognition, antibiotics when indicated, source control and organ support '
+        'are the core principles.',
+    reference:
+        'Nelson Textbook of Pediatrics, 22nd ed.; WHO; pediatric sepsis consensus guidance.',
+  ),
+
+  // ==========================================================
+  // 10. ANAPHYLAXIS
+  // ==========================================================
+
+  PediatricTopic(
     title: 'Anaphylaxis',
-    category: 'Emergency',
+    category: 'Emergency Pediatrics',
     definition:
-        'A rapid-onset systemic hypersensitivity reaction that can cause airway, breathing or circulatory compromise.',
+        'Anaphylaxis is a rapid-onset systemic hypersensitivity reaction that may cause '
+        'airway, breathing or circulatory compromise.',
     causes:
-        'Common triggers include foods, medications, insect venom and other allergens.',
-    riskFactors:
-        'Previous anaphylaxis, asthma and exposure to known allergens.',
-    pathophysiology:
-        'Mast-cell and basophil mediator release causes vasodilation, increased vascular permeability, bronchospasm and airway edema.',
-    clinicalPresentation:
-        'Rapid onset of urticaria, angioedema, wheeze, stridor, vomiting, hypotension or collapse. Skin findings may be absent.',
-    examination:
-        'Assess airway, breathing, circulation, mental status and skin/mucosal findings immediately.',
-    differentialDiagnosis:
-        'Asthma, vasovagal syncope, panic attack, foreign-body aspiration, septic shock and other causes of acute collapse.',
+        'Common triggers include foods, medications, insect stings and latex.',
+    clinical:
+        'Urticaria, angioedema, wheeze, stridor, vomiting, hypotension, collapse or '
+        'multisystem involvement may occur. Skin findings can occasionally be absent.',
+    severity:
+        'Airway obstruction, severe bronchospasm, hypotension or collapse indicate life-threatening anaphylaxis.',
+    differential:
+        'Asthma, vasovagal syncope, panic attack, foreign-body aspiration and septic shock.',
     investigations:
         'Diagnosis is clinical. Do not delay treatment for laboratory testing.',
-    interpretation:
-        'Airway, breathing or circulation compromise in the appropriate clinical context warrants immediate treatment.',
-    severity:
-        'Severe anaphylaxis includes airway obstruction, severe bronchospasm, hypotension or cardiovascular collapse.',
-    emergencyManagement:
-        'Give intramuscular epinephrine immediately, position appropriately, provide oxygen and intravenous fluids when indicated and prepare for advanced airway management if needed.',
-    definitiveManagement:
-        'Observe according to risk, identify the trigger, provide an emergency action plan and arrange allergy follow-up where appropriate.',
-    pediatricDose:
-        'IM epinephrine: commonly 0.01 mg/kg of the 1 mg/mL preparation, up to the recommended maximum dose, repeated according to the emergency protocol when symptoms persist.',
-    adultDose:
-        'IM epinephrine: commonly 0.5 mg of the 1 mg/mL preparation in adults, repeated according to the emergency protocol if required.',
-    contraindications:
-        'There is no absolute contraindication to IM epinephrine in life-threatening anaphylaxis.',
-    adverseEffects:
-        'Transient tachycardia, tremor, pallor, anxiety and headache may occur.',
+    diagnosis:
+        'Acute compatible symptoms with airway, breathing or circulation compromise, '
+        'especially after a likely trigger.',
+    management:
+        'Call for help. Give IM epinephrine immediately into the anterolateral thigh. '
+        'Position appropriately, provide oxygen, establish IV/IO access when needed, '
+        'give fluids for shock and repeat epinephrine when indicated by persistent symptoms. '
+        'Adjunctive therapies never replace epinephrine.',
+    drugs:
+        'IM epinephrine/adrenaline using 1 mg/mL (1:1000) preparation is commonly dosed '
+        'at 0.01 mg/kg IM, with a maximum dose according to age/protocol. Repeat dosing '
+        'may be required when symptoms persist. IV epinephrine is reserved for expert '
+        'critical-care settings with appropriate monitoring.',
     redFlags:
-        'Airway edema, stridor, severe bronchospasm, hypotension, collapse or rapidly progressive symptoms.',
+        'Stridor, tongue/throat swelling, severe wheeze, cyanosis, hypotension, collapse '
+        'or rapidly progressive multisystem symptoms.',
     admission:
-        'Admission/extended observation depends on severity, repeated epinephrine requirements, comorbidities and risk of biphasic reaction.',
+        'Severe reactions, repeated epinephrine requirement, respiratory compromise, '
+        'hypotension or prolonged observation needs require hospital monitoring.',
     discharge:
-        'Only after clinical stability, appropriate observation and education regarding future episodes.',
-    clinicalPearls:
-        'Epinephrine is first-line therapy. Antihistamines and corticosteroids must never replace epinephrine.',
-    references:
-        'Tintinalli’s Emergency Medicine; World Allergy Organization; Resuscitation Council guidance.',
-  ),
-
-  MedicalTopic(
-    title: 'Status Epilepticus',
-    category: 'Emergency',
-    definition:
-        'A prolonged seizure or recurrent seizures without recovery between events requiring urgent treatment.',
-    causes:
-        'Known epilepsy, medication nonadherence, metabolic disturbance, infection, stroke, trauma, toxins and hypoglycemia.',
-    riskFactors:
-        'Epilepsy, CNS disease, metabolic abnormalities and medication interruption.',
-    pathophysiology:
-        'Persistent neuronal activity produces progressive metabolic stress and can cause neuronal injury and systemic complications.',
-    clinicalPresentation:
-        'Continuous convulsive activity or recurrent seizures with failure to regain baseline consciousness.',
-    examination:
-        'ABC assessment, glucose measurement, neurologic examination when possible and search for trauma or infection.',
-    differentialDiagnosis:
-        'Syncope, psychogenic nonepileptic seizures, hypoglycemia, intoxication and movement disorders.',
-    investigations:
-        'Check glucose immediately. Additional testing includes electrolytes, toxicology, infection studies and neuroimaging according to suspected cause.',
-    interpretation:
-        'Treatment should begin promptly when status epilepticus is clinically recognized.',
-    severity:
-        'Persistent seizures, respiratory compromise, hemodynamic instability and failure of first-line therapy indicate severe disease.',
-    emergencyManagement:
-        'Protect airway and breathing, check glucose and administer an appropriate benzodiazepine promptly, followed by second-line antiseizure therapy if needed.',
-    definitiveManagement:
-        'Identify and treat the underlying cause and optimize long-term seizure control.',
-    pediatricDose:
-        'Benzodiazepine choice and weight-based dosing must follow the local pediatric status epilepticus protocol.',
-    adultDose:
-        'Use guideline-based benzodiazepine and second-line antiseizure dosing according to the institutional status epilepticus protocol.',
-    contraindications:
-        'Respiratory depression and hemodynamic effects must be anticipated, but treatment should not be delayed in ongoing status.',
-    adverseEffects:
-        'Sedation, respiratory depression and hypotension can occur with benzodiazepines.',
-    redFlags:
-        'Persistent seizure activity, hypoglycemia, hypoxia, trauma, pregnancy, infection or failure to respond to initial therapy.',
-    admission:
-        'Status epilepticus requires hospital admission and may require intensive care.',
-    discharge:
-        'Not applicable until the underlying cause has been treated and neurologic stability established.',
-    clinicalPearls:
-        'Check glucose early and do not delay seizure treatment while waiting for extensive investigations.',
-    references:
-        'Tintinalli’s Emergency Medicine; American Epilepsy Society; ILAE; NICE seizure guidance.',
-  ),
-
-  MedicalTopic(
-    title: 'Sepsis and Septic Shock',
-    category: 'Emergency',
-    definition:
-        'Life-threatening organ dysfunction caused by a dysregulated response to infection. Septic shock represents severe circulatory and metabolic dysfunction.',
-    causes:
-        'Bacterial, viral or fungal infections from pulmonary, urinary, abdominal, skin or other sources.',
-    riskFactors:
-        'Older age, immunosuppression, chronic disease, invasive devices and recent hospitalization.',
-    pathophysiology:
-        'Dysregulated inflammation, endothelial dysfunction, vasodilation, altered microcirculation and organ injury cause systemic dysfunction.',
-    clinicalPresentation:
-        'Fever or hypothermia, tachycardia, tachypnea, hypotension, altered mental status, oliguria and evidence of organ dysfunction.',
-    examination:
-        'Assess ABCDE, perfusion, mental status, urine output, skin temperature and source of infection.',
-    differentialDiagnosis:
-        'Hemorrhage, cardiogenic shock, anaphylaxis, adrenal crisis and other causes of shock.',
-    investigations:
-        'Blood cultures when appropriate, lactate, CBC, renal and liver function, coagulation studies, urine testing and source-directed imaging.',
-    interpretation:
-        'Lactate and vital signs should be interpreted together with perfusion and organ function.',
-    severity:
-        'Hypotension, altered consciousness, oliguria, hypoxemia and rising lactate indicate severe disease.',
-    emergencyManagement:
-        'Recognize early, obtain appropriate cultures without delaying treatment, administer timely antimicrobial therapy and provide hemodynamic support with frequent reassessment.',
-    definitiveManagement:
-        'Source control, targeted antimicrobial therapy and organ support are essential.',
-    pediatricDose:
-        'Pediatric sepsis fluid and vasoactive therapy must follow a pediatric sepsis protocol and requires frequent reassessment to avoid fluid overload.',
-    adultDose:
-        'Adult fluid, antimicrobial and vasopressor therapy should follow the current sepsis protocol and be individualized to hemodynamic response.',
-    contraindications:
-        'Fluid administration must be individualized in patients with heart failure, renal failure or pulmonary edema.',
-    adverseEffects:
-        'Fluid overload, electrolyte abnormalities and medication-specific toxicity may occur.',
-    redFlags:
-        'Shock, altered consciousness, severe hypoxemia, oliguria or rapidly progressive organ dysfunction.',
-    admission:
-        'Sepsis with organ dysfunction requires hospital admission; shock generally requires critical care.',
-    discharge:
-        'Only after source control, clinical stability and an appropriate antimicrobial/follow-up plan.',
-    clinicalPearls:
-        'Early recognition, appropriate antimicrobial therapy, source control and repeated reassessment are central.',
-    references:
-        'Tintinalli’s Emergency Medicine; Surviving Sepsis Campaign; WHO sepsis resources.',
+        'Only after appropriate observation and provision of an emergency action plan '
+        'and trigger avoidance education.',
+    keyPoints:
+        'Epinephrine is the first-line life-saving medication.',
+    reference:
+        'Nelson Textbook of Pediatrics, 22nd ed.; World Allergy Organization guidance.',
   ),
 
   // ==========================================================
-  // SURGERY
+  // 11. HYPOGLYCEMIA
   // ==========================================================
 
-  MedicalTopic(
+  PediatricTopic(
+    title: 'Hypoglycemia',
+    category: 'Endocrinology / Emergency',
+    definition:
+        'Hypoglycemia is an abnormally low blood glucose level capable of producing '
+        'autonomic and neuroglycopenic symptoms.',
+    causes:
+        'Poor intake, prolonged fasting, insulin or glucose-lowering medication, sepsis, '
+        'hyperinsulinism, adrenal disease and metabolic disorders.',
+    clinical:
+        'Sweating, tremor, hunger, irritability, weakness, altered behavior, seizures '
+        'and loss of consciousness may occur.',
+    severity:
+        'Neuroglycopenic symptoms, seizures or unconsciousness indicate severe disease.',
+    differential:
+        'Seizure disorder, intoxication, sepsis, electrolyte abnormalities and metabolic disease.',
+    investigations:
+        'Check bedside glucose immediately. In unexplained/recurrent cases obtain a '
+        'critical sample according to endocrine protocol.',
+    diagnosis:
+        'Compatible symptoms plus low measured glucose, interpreted according to age and clinical context.',
+    management:
+        'If conscious and able to swallow, give rapidly absorbed carbohydrate. If severe '
+        'or unable to take orally, give IV dextrose according to pediatric emergency protocol. '
+        'Recheck glucose after treatment.',
+    drugs:
+        'IV dextrose concentration and dose depend on age and severity. A commonly used '
+        'initial approach is IV dextrose providing approximately 0.2 g/kg glucose, followed '
+        'by reassessment and further therapy according to protocol. Glucagon may be used '
+        'when IV/IO access is not immediately available in selected situations.',
+    redFlags:
+        'Seizure, altered consciousness, recurrent hypoglycemia or suspected metabolic/endocrine disease.',
+    admission:
+        'Persistent or recurrent hypoglycemia, suspected serious underlying disease or inability '
+        'to maintain glucose orally.',
+    discharge:
+        'Only after the underlying cause is assessed and stable glucose can be maintained.',
+    keyPoints:
+        'Check glucose early in any child with unexplained altered consciousness or seizure.',
+    reference:
+        'Nelson Textbook of Pediatrics, 22nd ed.; pediatric endocrine emergency guidance.',
+  ),
+
+  // ==========================================================
+  // 12. DKA
+  // ==========================================================
+
+  PediatricTopic(
+    title: 'Diabetic Ketoacidosis',
+    category: 'Endocrinology / Emergency',
+    definition:
+        'DKA is a metabolic emergency characterized by insulin deficiency, ketosis '
+        'and metabolic acidosis, usually accompanied by hyperglycemia.',
+    causes:
+        'New-onset type 1 diabetes, missed insulin, pump failure and infection are common precipitants.',
+    clinical:
+        'Polyuria, polydipsia, dehydration, weight loss, vomiting, abdominal pain, '
+        'deep breathing and altered consciousness may occur.',
+    severity:
+        'Assess dehydration, perfusion, acidosis and neurologic status. Cerebral injury '
+        'is a major pediatric complication.',
+    differential:
+        'Starvation ketosis, lactic acidosis, sepsis and toxic ingestion.',
+    investigations:
+        'Glucose, blood or urine ketones, electrolytes, venous blood gas, renal function '
+        'and frequent neurologic assessment. Potassium must be monitored closely.',
+    diagnosis:
+        'Hyperglycemia or diabetes-associated glucose abnormality plus ketosis and metabolic acidosis.',
+    management:
+        'Careful fluid replacement, insulin infusion, potassium/electrolyte management '
+        'and treatment of the precipitating cause. Pediatric DKA should follow a dedicated '
+        'protocol rather than an adult fluid/insulin regimen.',
+    drugs:
+        'IV insulin is commonly started after initial fluid assessment and only when potassium '
+        'is safe according to protocol. Typical pediatric protocols use approximately '
+        '0.05–0.1 units/kg/hour without an IV insulin bolus. Potassium replacement is '
+        'guided by measured serum potassium and urine output. Avoid routine bicarbonate.',
+    redFlags:
+        'Altered mental status, severe acidosis, shock, abnormal potassium or signs suggesting cerebral injury.',
+    admission:
+        'All significant pediatric DKA requires hospital management; severe cases require PICU-level care.',
+    discharge:
+        'After resolution of ketosis/acidosis, stable glucose management, adequate oral intake '
+        'and diabetes education.',
+    keyPoints:
+        'Monitor neurologic status and electrolytes continuously. Avoid overly rapid osmotic changes.',
+    reference:
+        'Nelson Textbook of Pediatrics, 22nd ed.; ISPAD pediatric DKA guidance.',
+  ),
+
+  // ==========================================================
+  // 13. UTI
+  // ==========================================================
+
+  PediatricTopic(
+    title: 'Urinary Tract Infection',
+    category: 'Nephrology / Infectious Disease',
+    definition:
+        'UTI is bacterial infection of the urinary tract and may range from cystitis '
+        'to pyelonephritis.',
+    causes:
+        'Enteric gram-negative organisms are common, especially Escherichia coli.',
+    clinical:
+        'Infants may present with fever, poor feeding, vomiting or irritability. Older '
+        'children may report dysuria, frequency, urgency, abdominal or flank pain.',
+    severity:
+        'Fever with systemic illness suggests upper urinary tract infection or pyelonephritis.',
+    differential:
+        'Viral illness, gastroenteritis, vulvovaginitis and other causes of fever.',
+    investigations:
+        'Urinalysis and appropriately collected urine culture are central. Collection '
+        'method is especially important in infants.',
+    diagnosis:
+        'Compatible symptoms plus supportive urinalysis and a properly collected positive culture.',
+    management:
+        'Choose oral or parenteral antibiotics according to age, severity, culture data '
+        'and local resistance. Investigate recurrent or atypical UTI according to pediatric guidance.',
+    drugs:
+        'Antibiotic choice must be culture- and age-dependent. Common oral options include '
+        'cephalosporins or amoxicillin-clavulanate where appropriate. Exact pediatric dose '
+        'should follow the local antibiogram and pediatric formulary.',
+    redFlags:
+        'Toxic appearance, dehydration, persistent vomiting, young infant, sepsis or flank pain with systemic illness.',
+    admission:
+        'Consider admission for young infants, sepsis, dehydration, inability to take oral therapy or resistant infection.',
+    discharge:
+        'Stable child tolerating oral medication with culture follow-up and clear return precautions.',
+    keyPoints:
+        'Correct urine collection is essential for avoiding false diagnoses.',
+    reference:
+        'Nelson Textbook of Pediatrics, 22nd ed.; pediatric UTI guidelines.',
+  ),
+
+  // ==========================================================
+  // 14. ACUTE OTITIS MEDIA
+  // ==========================================================
+
+  PediatricTopic(
+    title: 'Acute Otitis Media',
+    category: 'ENT Pediatrics',
+    definition:
+        'Acute otitis media is acute inflammation/infection of the middle ear.',
+    causes:
+        'Common bacterial organisms include Streptococcus pneumoniae, Haemophilus '
+        'influenzae and Moraxella catarrhalis; viral infections may coexist.',
+    clinical:
+        'Ear pain, fever, irritability and sleep disturbance are common. Otoscopy '
+        'should assess tympanic membrane appearance and mobility when possible.',
+    severity:
+        'Severe disease includes significant otalgia, high fever, toxic appearance or complications.',
+    differential:
+        'Otitis externa, viral upper respiratory infection, foreign body and referred dental pain.',
+    investigations:
+        'Diagnosis is clinical with appropriate otoscopy. Routine blood tests are unnecessary.',
+    diagnosis:
+        'Acute symptoms plus compatible middle-ear findings.',
+    management:
+        'Analgesia is essential. Antibiotics are selected based on age, severity, laterality, '
+        'recurrent disease and local guideline. Some children can be observed initially.',
+    drugs:
+        'Paracetamol 10–15 mg/kg/dose is commonly used for pain/fever. Ibuprofen 5–10 '
+        'mg/kg/dose may be used when appropriate. When antibiotics are indicated, '
+        'amoxicillin is commonly first-line with weight-based dosing according to local guideline.',
+    redFlags:
+        'Mastoid swelling, facial weakness, severe systemic illness, meningitis signs or intracranial complication.',
+    admission:
+        'Rare; considered for serious complications or severe systemic illness.',
+    discharge:
+        'Most uncomplicated cases can be managed as outpatient with analgesia and follow-up.',
+    keyPoints:
+        'Pain control is a central component of management.',
+    reference:
+        'Nelson Textbook of Pediatrics, 22nd ed.; pediatric ENT guidance.',
+  ),
+
+  // ==========================================================
+  // 15. IRON DEFICIENCY ANEMIA
+  // ==========================================================
+
+  PediatricTopic(
+    title: 'Iron-Deficiency Anemia',
+    category: 'Hematology',
+    definition:
+        'Iron-deficiency anemia is anemia caused by insufficient iron available for hemoglobin synthesis.',
+    causes:
+        'Inadequate dietary iron, excessive cow milk intake, increased requirements during '
+        'growth, chronic blood loss and malabsorption.',
+    clinical:
+        'Pallor, fatigue, irritability, poor concentration and pica may occur. Severe anemia '
+        'can cause tachycardia or cardiac strain.',
+    severity:
+        'Severity depends on hemoglobin level, symptoms, duration and underlying cause.',
+    differential:
+        'Thalassemia trait, anemia of inflammation, lead toxicity and other causes of microcytic anemia.',
+    investigations:
+        'CBC with indices, ferritin and other iron studies when necessary. Ferritin may be '
+        'affected by inflammation and should be interpreted in context.',
+    diagnosis:
+        'Microcytic anemia with evidence of depleted iron stores and compatible clinical history.',
+    management:
+        'Treat the cause and provide oral iron. Dietary counseling is important. Severe symptomatic '
+        'anemia may require urgent specialist assessment and, rarely, transfusion.',
+    drugs:
+        'Elemental oral iron is commonly given at approximately 3 mg/kg/day for treatment in '
+        'children, with formulation-specific dosing and tolerance considerations. Treatment '
+        'continues long enough to replenish iron stores after hemoglobin normalizes.',
+    redFlags:
+        'Severe symptomatic anemia, cardiac compromise, very low hemoglobin, bleeding or diagnostic uncertainty.',
+    admission:
+        'Consider admission for severe symptomatic anemia, active bleeding or hemodynamic compromise.',
+    discharge:
+        'Outpatient treatment is appropriate for stable children with reliable follow-up.',
+    keyPoints:
+        'Always identify why the child became iron deficient rather than treating the CBC alone.',
+    reference:
+        'Nelson Textbook of Pediatrics, 22nd ed.; WHO anemia guidance.',
+  ),
+
+  // ==========================================================
+  // 16. NEPHROTIC SYNDROME
+  // ==========================================================
+
+  PediatricTopic(
+    title: 'Nephrotic Syndrome',
+    category: 'Nephrology',
+    definition:
+        'Nephrotic syndrome is characterized by heavy proteinuria, hypoalbuminemia '
+        'and edema, often with hyperlipidemia.',
+    causes:
+        'Minimal change disease is common in childhood. Secondary causes include infections, '
+        'systemic disease and genetic disorders.',
+    clinical:
+        'Periorbital and dependent edema, weight gain, ascites and reduced urine output may occur.',
+    severity:
+        'Complications include infection, thrombosis, hypovolemia and acute kidney injury.',
+    differential:
+        'Acute nephritic syndrome, heart failure, liver disease and protein-losing enteropathy.',
+    investigations:
+        'Urinalysis, urine protein assessment, serum albumin, renal function, electrolytes '
+        'and evaluation for secondary causes when indicated.',
+    diagnosis:
+        'Clinical and laboratory evidence of nephrotic-range protein loss with hypoalbuminemia.',
+    management:
+        'Specialist pediatric nephrology involvement is recommended. Salt restriction, edema management '
+        'and corticosteroid therapy for steroid-sensitive disease are central components.',
+    drugs:
+        'Prednisolone treatment follows a pediatric nephrology protocol, commonly using a weight- or '
+        'body-surface-area-based regimen. Diuretics are used cautiously when significant edema is present. '
+        'Albumin infusion may be used in selected severe hypovolemic/edematous states.',
+    redFlags:
+        'Severe edema with respiratory compromise, infection, thrombosis, shock or acute kidney injury.',
+    admission:
+        'Severe edema, infection, thrombosis, hypovolemia or significant renal dysfunction.',
+    discharge:
+        'Stable fluid status, adequate urine output and established nephrology follow-up.',
+    keyPoints:
+        'Over-diuresis can cause intravascular depletion despite severe visible edema.',
+    reference:
+        'Nelson Textbook of Pediatrics, 22nd ed.; pediatric nephrology guidance.',
+  ),
+
+  // ==========================================================
+  // 17. KAWASAKI
+  // ==========================================================
+
+  PediatricTopic(
+    title: 'Kawasaki Disease',
+    category: 'Cardiology / Rheumatology',
+    definition:
+        'Kawasaki disease is an acute systemic vasculitis of childhood with particular '
+        'risk of coronary artery complications.',
+    causes:
+        'The precise cause remains uncertain; an infectious or immune trigger is suspected.',
+    clinical:
+        'Persistent fever with bilateral conjunctival injection, oral mucosal changes, '
+        'rash, extremity changes and cervical lymphadenopathy are characteristic.',
+    severity:
+        'Coronary artery aneurysm, myocarditis, shock and arrhythmias are important complications.',
+    differential:
+        'Scarlet fever, measles, adenovirus, toxic shock syndrome and systemic inflammatory disease.',
+    investigations:
+        'CBC, inflammatory markers, liver tests, urinalysis, ECG and echocardiography are commonly used.',
+    diagnosis:
+        'Clinical diagnosis supported by laboratory and cardiac assessment.',
+    management:
+        'Urgent pediatric specialist assessment is required. IVIG and aspirin are standard '
+        'components of therapy, with treatment timing aimed at reducing coronary complications.',
+    drugs:
+        'IVIG is commonly given as 2 g/kg as a single infusion. Aspirin dosing varies between '
+        'acute anti-inflammatory and later antiplatelet phases and should follow the pediatric '
+        'Kawasaki protocol. Children receiving aspirin require counseling about viral illness exposure.',
+    redFlags:
+        'Shock, myocarditis, arrhythmia, persistent fever despite initial therapy or coronary abnormalities.',
+    admission:
+        'Suspected Kawasaki disease generally requires hospital assessment and cardiac evaluation.',
+    discharge:
+        'After treatment, stable cardiovascular status and a clear echocardiography/follow-up plan.',
+    keyPoints:
+        'Early recognition and IVIG treatment reduce coronary complications.',
+    reference:
+        'Nelson Textbook of Pediatrics, 22nd ed.; AHA Kawasaki disease guidance.',
+  ),
+
+  // ==========================================================
+  // 18. APPENDICITIS
+  // ==========================================================
+
+  PediatricTopic(
     title: 'Acute Appendicitis',
-    category: 'Surgery',
+    category: 'Pediatric Surgery',
     definition:
-        'Acute inflammation of the vermiform appendix, commonly caused by luminal obstruction.',
+        'Acute inflammation of the appendix and a common cause of pediatric surgical abdomen.',
     causes:
-        'Fecalith, lymphoid hyperplasia and other forms of luminal obstruction may initiate inflammation.',
-    riskFactors:
-        'Age, family history and factors associated with appendiceal obstruction.',
-    pathophysiology:
-        'Obstruction leads to distension, bacterial proliferation, ischemia and potentially perforation.',
-    clinicalPresentation:
-        'Pain may begin centrally and migrate to the right lower quadrant. Anorexia, nausea, vomiting and fever are common.',
-    examination:
-        'Assess abdominal tenderness, guarding, rebound, fever and signs of generalized peritonitis.',
-    differentialDiagnosis:
-        'Gastroenteritis, mesenteric adenitis, renal colic, gynecologic disease, inflammatory bowel disease and ectopic pregnancy.',
-    investigations:
-        'CBC and inflammatory markers may support the diagnosis. Ultrasound is useful particularly in children and pregnancy; CT is used selectively.',
-    interpretation:
-        'Imaging findings should be interpreted with clinical assessment and pretest probability.',
+        'Luminal obstruction may be caused by lymphoid hyperplasia, fecalith or other obstruction.',
+    clinical:
+        'Pain may begin centrally and migrate to the right lower quadrant. Anorexia, nausea, '
+        'vomiting and fever are common but presentations may be atypical in young children.',
     severity:
-        'Perforation, abscess, generalized peritonitis and sepsis indicate complicated disease.',
-    emergencyManagement:
-        'NPO status, analgesia, antiemetic therapy, appropriate fluids, antimicrobial therapy when indicated and urgent surgical consultation.',
-    definitiveManagement:
-        'Appendectomy remains standard for many cases, while selected uncomplicated cases may be managed nonoperatively according to current evidence and local practice.',
-    pediatricDose:
-        'Analgesic and antimicrobial doses should be weight-based and follow the pediatric surgical protocol.',
-    adultDose:
-        'Analgesia, fluids and antimicrobial therapy should follow the local surgical protocol.',
-    contraindications:
-        'Medication selection must account for allergy, renal function and pregnancy status.',
-    adverseEffects:
-        'Analgesics and antimicrobials have drug-specific adverse effects; surgery carries bleeding, infection and anesthesia risks.',
-    redFlags:
-        'Generalized peritonitis, sepsis, perforation, abscess or hemodynamic instability.',
-    admission:
-        'Most confirmed cases requiring surgery are admitted.',
-    discharge:
-        'After appropriate definitive management, adequate pain control, oral intake and stable vital signs.',
-    clinicalPearls:
-        'Atypical presentation is common in children, pregnancy and older adults.',
-    references:
-        'Pillay & Lovely surgery reference; WSES Jerusalem Guidelines; standard surgical guidance.',
-  ),
-
-  // ==========================================================
-  // GYNECOLOGY & OBSTETRICS
-  // ==========================================================
-
-  MedicalTopic(
-    title: 'Ectopic Pregnancy',
-    category: 'Gynecology & Obstetrics',
-    definition:
-        'Implantation of a pregnancy outside the normal endometrial cavity, most commonly in the fallopian tube.',
-    causes:
-        'Tubal damage, previous ectopic pregnancy, pelvic infection, tubal surgery and assisted reproduction may increase risk.',
-    riskFactors:
-        'Previous ectopic pregnancy, tubal disease, PID, smoking and assisted reproductive technology.',
-    pathophysiology:
-        'Implantation in the fallopian tube can lead to progressive distension and rupture with intraperitoneal hemorrhage.',
-    clinicalPresentation:
-        'Amenorrhea or positive pregnancy test with abdominal or pelvic pain and vaginal bleeding. Rupture may cause syncope, shoulder-tip pain and shock.',
-    examination:
-        'Assess hemodynamic stability, abdominal tenderness and signs of peritoneal irritation.',
-    differentialDiagnosis:
-        'Miscarriage, ovarian torsion, ruptured ovarian cyst, appendicitis and pelvic infection.',
+        'Perforation, generalized peritonitis and sepsis indicate complicated disease.',
+    differential:
+        'Gastroenteritis, mesenteric adenitis, constipation, UTI, ovarian pathology and intussusception.',
     investigations:
-        'Pregnancy testing, quantitative beta-hCG and transvaginal ultrasound are central. Interpretation depends on gestational timing and clinical context.',
-    interpretation:
-        'A pregnancy of unknown location requires appropriate follow-up until location or resolution is established.',
-    severity:
-        'Hemodynamic instability or suspected rupture represents a surgical emergency.',
-    emergencyManagement:
-        'Resuscitate unstable patients immediately, obtain urgent gynecologic/surgical review and prepare for operative management when rupture is suspected.',
-    definitiveManagement:
-        'Management may be expectant, medical or surgical depending on stability, ultrasound findings, hCG, patient factors and local criteria.',
-    pediatricDose:
-        'Not applicable.',
-    adultDose:
-        'Methotrexate regimens and analgesia should follow current gynecology protocols and eligibility criteria.',
-    contraindications:
-        'Methotrexate has important contraindications and requires careful patient selection and follow-up.',
-    adverseEffects:
-        'Methotrexate can cause gastrointestinal symptoms, hepatotoxicity and other adverse effects; surgical treatment carries operative risks.',
+        'CBC and inflammatory markers may support assessment. Ultrasound is commonly preferred '
+        'in children. CT is reserved for selected cases where diagnosis remains uncertain.',
+    diagnosis:
+        'Clinical assessment supported by imaging when needed.',
+    management:
+        'Early surgical consultation. Provide analgesia, hydration and antibiotics when indicated. '
+        'Definitive management may be operative or selected non-operative management depending on disease.',
+    drugs:
+        'Analgesics are given according to pediatric dosing. Antibiotics for complicated appendicitis '
+        'must provide appropriate gram-negative and anaerobic coverage according to local surgical protocol.',
     redFlags:
-        'Shock, syncope, severe abdominal pain, significant hemoperitoneum or suspected rupture.',
+        'Generalized peritonitis, shock, severe dehydration, perforation or sepsis.',
     admission:
-        'Unstable patients and those requiring surgery require admission.',
+        'Suspected appendicitis generally requires surgical assessment and often admission.',
     discharge:
-        'Only when clinically stable with an appropriate follow-up plan and confirmed resolution when medically managed.',
-    clinicalPearls:
-        'Pregnancy plus pain and bleeding should always prompt consideration of ectopic pregnancy.',
-    references:
-        'Ten Teachers: Obstetrics & Gynaecology; NICE Ectopic Pregnancy guideline; RCOG resources.',
-  ),
-
-  // ==========================================================
-  // INVESTIGATION & INTERPRETATION
-  // ==========================================================
-
-  MedicalTopic(
-    title: 'ABG Interpretation',
-    category: 'Investigation & Interpretation',
-    definition:
-        'Arterial blood gas analysis evaluates acid-base balance, ventilation and oxygenation.',
-    causes:
-        'ABG abnormalities reflect respiratory, metabolic or mixed disorders.',
-    riskFactors:
-        'Critical illness, respiratory failure, shock, DKA, poisoning and severe metabolic disease.',
-    pathophysiology:
-        'Changes in PaCO2 primarily reflect respiratory control, while bicarbonate and base excess reflect metabolic processes.',
-    clinicalPresentation:
-        'Interpret ABG results in patients with respiratory distress, altered consciousness, shock or suspected metabolic disturbance.',
-    examination:
-        'Assess respiratory rate, work of breathing, oxygenation, perfusion and mental status.',
-    differentialDiagnosis:
-        'Respiratory acidosis, respiratory alkalosis, metabolic acidosis, metabolic alkalosis and mixed disorders.',
-    investigations:
-        'Review pH, PaCO2, HCO3, PaO2, oxygen saturation and base excess. Calculate anion gap when appropriate.',
-    interpretation:
-        'First determine acidemia or alkalemia, then identify the primary process, assess compensation and look for mixed disorders.',
-    severity:
-        'Severe acidemia, hypoxemia and marked hypercapnia may represent life-threatening illness.',
-    emergencyManagement:
-        'Treat the underlying cause and support airway and ventilation when necessary.',
-    definitiveManagement:
-        'Management depends on the underlying disorder rather than the ABG number alone.',
-    pediatricDose:
-        'Not applicable.',
-    adultDose:
-        'Not applicable.',
-    contraindications:
-        'Arterial sampling should be performed using appropriate technique and consideration of bleeding risk.',
-    adverseEffects:
-        'Pain, hematoma and bleeding can occur after arterial sampling.',
-    redFlags:
-        'Severe acidemia, severe hypoxemia, rapidly increasing PaCO2 or clinical respiratory failure.',
-    admission:
-        'Determined by the underlying condition and clinical severity.',
-    discharge:
-        'Based on resolution or safe management of the underlying disease.',
-    clinicalPearls:
-        'A normal pH does not exclude a dangerous mixed acid-base disorder.',
-    references:
-        'Harrison’s Principles of Internal Medicine; standard critical-care acid-base references.',
-  ),
-
-  MedicalTopic(
-    title: 'ECG Systematic Interpretation',
-    category: 'Investigation & Interpretation',
-    definition:
-        'A structured approach to interpreting a standard 12-lead electrocardiogram.',
-    causes:
-        'ECG abnormalities can result from ischemia, arrhythmia, conduction disease, electrolyte disturbance and structural heart disease.',
-    riskFactors:
-        'Cardiovascular disease, electrolyte disorders, medications and systemic illness.',
-    pathophysiology:
-        'The ECG records electrical activity generated by myocardial depolarization and repolarization.',
-    clinicalPresentation:
-        'Interpret ECGs in patients with chest pain, palpitations, syncope, dyspnea or electrolyte abnormalities.',
-    examination:
-        'Always interpret alongside vital signs and clinical condition.',
-    differentialDiagnosis:
-        'Normal variants, ischemia, arrhythmias, conduction abnormalities, electrolyte disturbances and chamber enlargement.',
-    investigations:
-        'Assess rate, rhythm, axis, P waves, PR interval, QRS duration, QT interval, ST segments and T waves.',
-    interpretation:
-        'Use a consistent sequence: rate, rhythm, axis, intervals, P waves, QRS, ST-T changes and comparison with previous ECGs.',
-    severity:
-        'ST-elevation, malignant arrhythmias, high-grade AV block and severe conduction abnormalities require urgent assessment.',
-    emergencyManagement:
-        'Treat life-threatening arrhythmias or ischemia according to emergency protocols.',
-    definitiveManagement:
-        'Depends on the underlying diagnosis.',
-    pediatricDose:
-        'Not applicable.',
-    adultDose:
-        'Not applicable.',
-    contraindications:
-        'There are no major contraindications to routine ECG recording.',
-    adverseEffects:
-        'No significant adverse effects beyond minor skin irritation from electrodes.',
-    redFlags:
-        'STEMI pattern, ventricular tachycardia, high-grade AV block or dangerous bradycardia.',
-    admission:
-        'Depends on the ECG diagnosis and clinical condition.',
-    discharge:
-        'Only after dangerous causes have been excluded when clinically appropriate.',
-    clinicalPearls:
-        'Never interpret an ECG without considering the patient’s symptoms and vital signs.',
-    references:
-        'Harrison’s Principles of Internal Medicine; Tintinalli’s Emergency Medicine; AHA/ESC ECG resources.',
-  ),
-
-  // ==========================================================
-  // DRUGS
-  // ==========================================================
-
-  MedicalTopic(
-    title: 'Paracetamol (Acetaminophen)',
-    category: 'Drugs',
-    definition:
-        'A commonly used analgesic and antipyretic medication.',
-    causes:
-        'Used for fever and mild to moderate pain from many causes.',
-    riskFactors:
-        'Overdose risk is increased by excessive dosing, liver disease, alcohol-related risk and multiple combination products containing paracetamol.',
-    pathophysiology:
-        'Produces analgesic and antipyretic effects through central mechanisms involving prostaglandin pathways.',
-    clinicalPresentation:
-        'Used for fever and pain. Toxic overdose may initially be asymptomatic and later cause hepatic injury.',
-    examination:
-        'Assess indication, weight, total daily dose, liver disease and concurrent medications.',
-    differentialDiagnosis:
-        'Underlying causes of fever or pain must still be assessed.',
-    investigations:
-        'Routine testing is not needed for therapeutic use. Suspected overdose requires urgent toxicology assessment and appropriate serum concentration testing.',
-    interpretation:
-        'Dose must be calculated using the patient’s weight and total daily exposure.',
-    severity:
-        'Overdose severity depends on dose, timing, repeated supratherapeutic exposure and patient risk factors.',
-    emergencyManagement:
-        'In suspected overdose, obtain urgent toxicology advice and follow the appropriate poisoning protocol.',
-    definitiveManagement:
-        'Use the lowest effective dose for the shortest appropriate duration.',
-    pediatricDose:
-        'Common pediatric dose: 10–15 mg/kg/dose orally every 4–6 hours when required. Maximum daily dose must follow age-specific and local guidance.',
-    adultDose:
-        'Common adult dose: 500–1000 mg every 4–6 hours when required, respecting the recommended maximum daily dose and individual risk factors.',
-    contraindications:
-        'Severe hepatic impairment and known hypersensitivity require particular caution or avoidance depending on circumstances.',
-    adverseEffects:
-        'At therapeutic doses it is generally well tolerated. Overdose can cause severe hepatic failure.',
-    redFlags:
-        'Suspected overdose, repeated supratherapeutic dosing, altered consciousness or evidence of liver injury.',
-    admission:
-        'Depends on overdose risk, clinical condition and toxicology assessment.',
-    discharge:
-        'After safe therapeutic use or appropriate toxicology clearance.',
-    clinicalPearls:
-        'Always check combination cold/flu products to avoid accidental duplicate paracetamol exposure.',
-    references:
-        'Nelson Textbook of Pediatrics; Davidson’s Principles and Practice of Medicine; standard pharmacology and toxicology guidance.',
-  ),
-
-  MedicalTopic(
-    title: 'Ondansetron',
-    category: 'Drugs',
-    definition:
-        'A serotonin 5-HT3 receptor antagonist used to control nausea and vomiting.',
-    causes:
-        'Used for selected causes of nausea and vomiting, including postoperative nausea and vomiting and gastroenteritis in appropriate clinical settings.',
-    riskFactors:
-        'QT prolongation risk, electrolyte abnormalities, interacting medications and underlying cardiac disease.',
-    pathophysiology:
-        'Blocks serotonin 5-HT3 receptors involved in the vomiting reflex.',
-    clinicalPresentation:
-        'Used when vomiting interferes with hydration or treatment in an appropriate clinical context.',
-    examination:
-        'Assess hydration, abdominal findings, neurologic status and possible surgical causes of vomiting.',
-    differentialDiagnosis:
-        'Gastroenteritis, bowel obstruction, appendicitis, intracranial disease, poisoning and metabolic disorders.',
-    investigations:
-        'Investigate the cause of vomiting when clinically indicated rather than simply suppressing symptoms.',
-    interpretation:
-        'Clinical improvement should not prevent evaluation of red flags or surgical causes.',
-    severity:
-        'Severity depends on dehydration, electrolyte disturbance and underlying disease.',
-    emergencyManagement:
-        'Correct dehydration and treat the underlying cause. Ondansetron can be considered in selected patients.',
-    definitiveManagement:
-        'Treat the cause of vomiting and maintain appropriate hydration.',
-    pediatricDose:
-        'Common pediatric dosing is approximately 0.1–0.15 mg/kg/dose in appropriate clinical settings, subject to age, maximum dose and local protocol.',
-    adultDose:
-        'Common adult dosing varies by indication and route; follow the local protocol and prescribing information.',
-    contraindications:
-        'Important considerations include congenital long-QT syndrome and significant drug interactions.',
-    adverseEffects:
-        'Headache, constipation and QT prolongation may occur.',
-    redFlags:
-        'Bilious vomiting, hematemesis, severe abdominal pain, altered consciousness, severe dehydration or suspected obstruction.',
-    admission:
-        'Based on dehydration, electrolyte abnormalities or the underlying diagnosis.',
-    discharge:
-        'Only when serious causes have been considered and hydration and follow-up are appropriate.',
-    clinicalPearls:
-        'An antiemetic treats vomiting but does not treat the underlying cause.',
-    references:
-        'Nelson Textbook of Pediatrics; Davidson’s Principles and Practice of Medicine; standard pharmacology references.',
-  ),
-
-  MedicalTopic(
-    title: 'Epinephrine (Adrenaline)',
-    category: 'Drugs',
-    definition:
-        'A sympathomimetic medication used in life-threatening conditions including anaphylaxis and cardiac arrest.',
-    causes:
-        'Used therapeutically for anaphylaxis, cardiac arrest and selected severe airway conditions.',
-    riskFactors:
-        'Dose and route errors are major safety risks.',
-    pathophysiology:
-        'Stimulates alpha and beta adrenergic receptors, producing vasoconstriction, bronchodilation and increased cardiac activity.',
-    clinicalPresentation:
-        'Used when rapid cardiovascular or airway support is required.',
-    examination:
-        'Assess airway, breathing, circulation and indication before administration.',
-    differentialDiagnosis:
-        'Treatment indication determines route and dose.',
-    investigations:
-        'Do not delay epinephrine in life-threatening anaphylaxis for investigations.',
-    interpretation:
-        'Concentration and route must be checked carefully before administration.',
-    severity:
-        'Life-threatening anaphylaxis and cardiac arrest require immediate emergency treatment.',
-    emergencyManagement:
-        'For anaphylaxis, IM administration into the lateral thigh is first-line. Cardiac arrest requires a different route and protocol.',
-    definitiveManagement:
-        'Continue management according to the underlying emergency and local advanced life-support protocol.',
-    pediatricDose:
-        'For anaphylaxis, a commonly used IM dose is 0.01 mg/kg of the 1 mg/mL preparation, subject to the maximum recommended dose and local protocol.',
-    adultDose:
-        'For anaphylaxis, a commonly used adult IM dose is 0.5 mg of the 1 mg/mL preparation, repeated according to the emergency protocol when necessary.',
-    contraindications:
-        'There is no absolute contraindication to IM epinephrine in life-threatening anaphylaxis.',
-    adverseEffects:
-        'Tachycardia, tremor, anxiety, pallor, headache and hypertension may occur.',
-    redFlags:
-        'Airway obstruction, shock, severe bronchospasm or cardiac arrest.',
-    admission:
-        'Depends on the indication and severity.',
-    discharge:
-        'After appropriate observation and treatment of the underlying condition.',
-    clinicalPearls:
-        'Always verify concentration and route. The concentration used for IM anaphylaxis is not interchangeable with every other epinephrine preparation.',
-    references:
-        'Tintinalli’s Emergency Medicine; Resuscitation Council guidance; World Allergy Organization.',
+        'After definitive treatment, adequate oral intake, pain control and stable examination.',
+    keyPoints:
+        'Atypical presentation is common in young children; maintain a low threshold for reassessment.',
+    reference:
+        'Nelson Textbook of Pediatrics, 22nd ed.; pediatric surgical guidelines.',
   ),
 ];
 
@@ -964,159 +977,146 @@ const List<MedicalTopic> medicalTopics = [
 // HOME PAGE
 // ============================================================
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class PediatricHomePage extends StatefulWidget {
+  const PediatricHomePage({super.key});
 
-  final List<String> categories = const [
-    'Pediatrics',
-    'Internal Medicine',
-    'Emergency',
-    'Surgery',
-    'Gynecology & Obstetrics',
-    'Investigation & Interpretation',
-    'Drugs',
-  ];
+  @override
+  State<PediatricHomePage> createState() => _PediatricHomePageState();
+}
+
+class _PediatricHomePageState extends State<PediatricHomePage> {
+  String search = '';
 
   @override
   Widget build(BuildContext context) {
+    final filtered = pediatricTopics.where((topic) {
+      final q = search.toLowerCase();
+
+      return topic.title.toLowerCase().contains(q) ||
+          topic.category.toLowerCase().contains(q);
+    }).toList();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'KanashMED',
+          'Pediatric Medicine',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
-      body: ListView.builder(
-        padding: const EdgeInsets.all(16),
-        itemCount: categories.length,
-        itemBuilder: (context, index) {
-          final category = categories[index];
-
-          final count = medicalTopics
-              .where((topic) => topic.category == category)
-              .length;
-
-          return Card(
-            margin: const EdgeInsets.only(bottom: 12),
-            child: ListTile(
-              leading: CircleAvatar(
-                child: Text('${index + 1}'),
-              ),
-              title: Text(
-                category,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: TextField(
+              decoration: InputDecoration(
+                hintText: 'Search pediatric topics...',
+                prefixIcon: const Icon(Icons.search),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
                 ),
               ),
-              subtitle: Text('$count topics'),
-              trailing: const Icon(Icons.arrow_forward_ios),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => TopicListPage(
-                      category: category,
+              onChanged: (value) {
+                setState(() {
+                  search = value;
+                });
+              },
+            ),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                '${filtered.length} topics',
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
+              ),
+            ),
+          ),
+
+          const SizedBox(height: 8),
+
+          Expanded(
+            child: ListView.builder(
+              padding: const EdgeInsets.all(12),
+              itemCount: filtered.length,
+              itemBuilder: (context, index) {
+                final topic = filtered[index];
+
+                return Card(
+                  margin: const EdgeInsets.only(bottom: 12),
+                  child: ListTile(
+                    contentPadding: const EdgeInsets.all(16),
+                    leading: CircleAvatar(
+                      child: Text('${index + 1}'),
                     ),
+                    title: Text(
+                      topic.title,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 17,
+                      ),
+                    ),
+                    subtitle: Padding(
+                      padding: const EdgeInsets.only(top: 6),
+                      child: Text(topic.category),
+                    ),
+                    trailing: const Icon(Icons.arrow_forward_ios),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => PediatricTopicPage(
+                            topic: topic,
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 );
               },
             ),
-          );
-        },
+          ),
+        ],
       ),
     );
   }
 }
 
 // ============================================================
-// TOPIC LIST
+// TOPIC PAGE
 // ============================================================
 
-class TopicListPage extends StatelessWidget {
-  final String category;
+class PediatricTopicPage extends StatelessWidget {
+  final PediatricTopic topic;
 
-  const TopicListPage({
-    super.key,
-    required this.category,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final topics = medicalTopics
-        .where((topic) => topic.category == category)
-        .toList();
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(category),
-      ),
-      body: ListView.builder(
-        padding: const EdgeInsets.all(12),
-        itemCount: topics.length,
-        itemBuilder: (context, index) {
-          final topic = topics[index];
-
-          return Card(
-            margin: const EdgeInsets.only(bottom: 10),
-            child: ListTile(
-              title: Text(
-                topic.title,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              subtitle: Text(
-                topic.definition,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-              ),
-              trailing: const Icon(Icons.medical_information_outlined),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => TopicDetailPage(
-                      topic: topic,
-                    ),
-                  ),
-                );
-              },
-            ),
-          );
-        },
-      ),
-    );
-  }
-}
-
-// ============================================================
-// TOPIC DETAIL
-// ============================================================
-
-class TopicDetailPage extends StatelessWidget {
-  final MedicalTopic topic;
-
-  const TopicDetailPage({
+  const PediatricTopicPage({
     super.key,
     required this.topic,
   });
 
   Widget section(
+    BuildContext context,
     String title,
-    String content,
-    IconData icon,
-  ) {
+    String text, {
+    IconData icon = Icons.medical_information,
+  }) {
     return Card(
-      margin: const EdgeInsets.only(bottom: 12),
+      margin: const EdgeInsets.only(bottom: 14),
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(18),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
-                Icon(icon),
+                Icon(
+                  icon,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
@@ -1131,10 +1131,10 @@ class TopicDetailPage extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
-              content,
+              text,
               style: const TextStyle(
                 fontSize: 15,
-                height: 1.5,
+                height: 1.55,
               ),
             ),
           ],
@@ -1150,119 +1150,149 @@ class TopicDetailPage extends StatelessWidget {
         title: Text(topic.title),
       ),
       body: ListView(
-        padding: const EdgeInsets.all(12),
+        padding: const EdgeInsets.all(14),
         children: [
+          Card(
+            child: Padding(
+              padding: const EdgeInsets.all(18),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    topic.title,
+                    style: const TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    topic.category,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.primary,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+
           section(
+            context,
             'Definition',
             topic.definition,
-            Icons.menu_book,
+            icon: Icons.info_outline,
           ),
+
           section(
-            'Causes',
+            context,
+            'Causes & Risk Factors',
             topic.causes,
-            Icons.search,
+            icon: Icons.warning_amber_outlined,
           ),
+
           section(
-            'Risk Factors',
-            topic.riskFactors,
-            Icons.warning_amber,
-          ),
-          section(
-            'Pathophysiology',
-            topic.pathophysiology,
-            Icons.biotech,
-          ),
-          section(
+            context,
             'Clinical Presentation',
-            topic.clinicalPresentation,
-            Icons.person,
+            topic.clinical,
+            icon: Icons.person_search,
           ),
+
           section(
-            'Physical Examination',
-            topic.examination,
-            Icons.health_and_safety,
-          ),
-          section(
-            'Differential Diagnosis',
-            topic.differentialDiagnosis,
-            Icons.compare_arrows,
-          ),
-          section(
-            'Investigations',
-            topic.investigations,
-            Icons.science,
-          ),
-          section(
-            'Interpretation',
-            topic.interpretation,
-            Icons.analytics,
-          ),
-          section(
+            context,
             'Severity Assessment',
             topic.severity,
-            Icons.speed,
+            icon: Icons.speed,
           ),
+
           section(
-            'Emergency Management',
-            topic.emergencyManagement,
-            Icons.emergency,
+            context,
+            'Differential Diagnosis',
+            topic.differential,
+            icon: Icons.compare_arrows,
           ),
+
           section(
-            'Definitive Management',
-            topic.definitiveManagement,
-            Icons.medical_services,
+            context,
+            'Investigations',
+            topic.investigations,
+            icon: Icons.biotech,
           ),
+
           section(
-            'Pediatric Dose',
-            topic.pediatricDose,
-            Icons.child_care,
+            context,
+            'Diagnosis',
+            topic.diagnosis,
+            icon: Icons.fact_check,
           ),
+
           section(
-            'Adult Dose',
-            topic.adultDose,
-            Icons.person_outline,
+            context,
+            'Management',
+            topic.management,
+            icon: Icons.healing,
           ),
+
           section(
-            'Contraindications',
-            topic.contraindications,
-            Icons.block,
+            context,
+            'Drugs & Pediatric Dosing',
+            topic.drugs,
+            icon: Icons.medication,
           ),
+
           section(
-            'Adverse Effects',
-            topic.adverseEffects,
-            Icons.report_problem,
-          ),
-          section(
+            context,
             'Red Flags',
             topic.redFlags,
-            Icons.dangerous,
+            icon: Icons.emergency,
           ),
+
           section(
-            'Admission',
+            context,
+            'Admission Criteria',
             topic.admission,
-            Icons.local_hospital,
+            icon: Icons.local_hospital,
           ),
+
           section(
-            'Discharge',
+            context,
+            'Discharge & Follow-up',
             topic.discharge,
-            Icons.exit_to_app,
+            icon: Icons.home,
           ),
+
           section(
-            'Clinical Pearls',
-            topic.clinicalPearls,
-            Icons.lightbulb,
+            context,
+            'Key Points',
+            topic.keyPoints,
+            icon: Icons.star_outline,
           ),
+
           section(
-            'References',
-            topic.references,
-            Icons.library_books,
+            context,
+            'Reference',
+            topic.reference,
+            icon: Icons.menu_book,
           ),
-          const SizedBox(height: 30),
-          const Text(
-            'Educational reference only. Always verify medication doses, contraindications and emergency treatment with the current local hospital protocol and current clinical guidelines.',
-            style: TextStyle(
-              fontSize: 12,
-              fontStyle: FontStyle.italic,
+
+          const SizedBox(height: 20),
+
+          const Card(
+            child: Padding(
+              padding: EdgeInsets.all(16),
+              child: Text(
+                'EDUCATIONAL DISCLAIMER\n\n'
+                'This application is intended for medical education and '
+                'clinical reference support. Drug doses and treatment '
+                'recommendations must be checked against the patient age, '
+                'weight, allergies, renal/hepatic function, formulation and '
+                'current institutional protocol before clinical use.',
+                style: TextStyle(
+                  fontSize: 13,
+                  height: 1.5,
+                ),
+              ),
             ),
           ),
         ],
