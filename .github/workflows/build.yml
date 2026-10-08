@@ -1,28 +1,30 @@
-name: Build KanashMED APK
+name: Build KanashMED Release
 
 on:
   workflow_dispatch:
+    inputs:
+      tag_name:
+        description: "Release version, for example v1.0.0"
+        required: true
+        default: "v1.0.0"
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
-    name: Build Android APK
+    name: Build and Publish APK
     runs-on: ubuntu-latest
 
     steps:
-      - name: Download repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install Flutter
+      - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
           channel: stable
           cache: true
-
-      - name: Check Flutter
-        run: flutter --version
 
       - name: Create Android project files
         run: flutter create . --platforms=android
@@ -33,10 +35,10 @@ jobs:
       - name: Build release APK
         run: flutter build apk --release
 
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
         with:
-          name: KanashMED-apk
-          path: build/app/outputs/flutter-apk/app-release.apk
-          if-no-files-found: error
-          retention-days: 7
+          tag_name: ${{ inputs.tag_name }}
+          name: KanashMED ${{ inputs.tag_name }}
+          generate_release_notes: true
+          files: build/app/outputs/flutter-apk/app-release.apk
