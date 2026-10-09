@@ -839,3 +839,348 @@ class TopicPage extends StatelessWidget {
     );
   }
 }
+// ============================================================
+// KANASHMED - MAIN SECTIONS MENU
+// ============================================================
+
+class SectionsHomePage extends StatelessWidget {
+  const SectionsHomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final sections = [
+      _SectionItem(
+        'Clinical Topics',
+        Icons.menu_book,
+        () => const HomePage(),
+      ),
+      _SectionItem(
+        'Drugs & Pharmacology',
+        Icons.medication,
+        () => const DrugHomePage(),
+      ),
+      _SectionItem(
+        'Iraqi Emergency Guide',
+        Icons.emergency,
+        () => const IraqiEmergencyHomePage(),
+      ),
+      _SectionItem(
+        'Emergency Medicine',
+        Icons.health_and_safety,
+        () => TopicLibraryPage<EmergencyTopic>(
+          pageTitle: 'Emergency Medicine',
+          items: emergencyTopics,
+          getTitle: (t) => t.title,
+          getSubtitle: (t) => t.category,
+          getDetails: (t) => [
+            LibraryDetail('Definition', t.definition),
+            LibraryDetail('Causes', t.causes),
+            LibraryDetail('Clinical Presentation', t.clinical),
+            LibraryDetail('ABCDE Assessment', t.abcde),
+            LibraryDetail('Severity', t.severity),
+            LibraryDetail('Differential Diagnosis', t.differential),
+            LibraryDetail('Investigations', t.investigations),
+            LibraryDetail('Diagnosis', t.diagnosis),
+            LibraryDetail('Management', t.management),
+            LibraryDetail('Adult Drugs', t.adultDrugs),
+            LibraryDetail('Pediatric Drugs', t.pediatricDrugs),
+            LibraryDetail('Procedures', t.procedures),
+            LibraryDetail('Red Flags', t.redFlags),
+            LibraryDetail('Disposition', t.disposition),
+            LibraryDetail('Key Points', t.keyPoints),
+            LibraryDetail('References', t.reference),
+          ],
+        ),
+      ),
+      _SectionItem(
+        'Gynecology',
+        Icons.pregnant_woman,
+        () => const GyneHomePage(),
+      ),
+      _SectionItem(
+        'Surgery',
+        Icons.local_hospital,
+        () => const SurgeryHomePage(),
+      ),
+      _SectionItem(
+        'Internal Medicine',
+        Icons.monitor_heart,
+        () => TopicLibraryPage<InternalMedicineTopic>(
+          pageTitle: 'Internal Medicine',
+          items: internalMedicineTopics,
+          getTitle: (t) => t.title,
+          getSubtitle: (t) => t.category,
+          getDetails: (t) => [
+            LibraryDetail('Definition', t.definition),
+            LibraryDetail('Pathophysiology', t.pathophysiology),
+            LibraryDetail('Causes', t.causes),
+            LibraryDetail('Risk Factors', t.riskFactors),
+            LibraryDetail('Clinical Presentation', t.clinicalPresentation),
+            LibraryDetail('Examination', t.examination),
+            LibraryDetail('Severity', t.severity),
+            LibraryDetail('Differential Diagnosis', t.differential),
+            LibraryDetail('Investigations', t.investigations),
+            LibraryDetail('Interpretation', t.interpretation),
+            LibraryDetail('Diagnosis', t.diagnosis),
+            LibraryDetail('Initial Management', t.initialManagement),
+            LibraryDetail('Definitive Management', t.definitiveManagement),
+            LibraryDetail('Drugs', t.drugs),
+            LibraryDetail('Red Flags', t.redFlags),
+            LibraryDetail('Admission', t.admission),
+            LibraryDetail('Complications', t.complications),
+            LibraryDetail('Follow-up', t.followUp),
+            LibraryDetail('Key Points', t.keyPoints),
+            LibraryDetail('References', t.reference),
+          ],
+        ),
+      ),
+      _SectionItem(
+        'Investigations',
+        Icons.science,
+        () => TopicLibraryPage<InvestigationTopic>(
+          pageTitle: 'Investigations',
+          items: investigationTopics,
+          getTitle: (t) => t.title,
+          getSubtitle: (t) => t.category,
+          getDetails: (t) => [
+            LibraryDetail('Purpose', t.purpose),
+            LibraryDetail('Interpretation', t.interpretation),
+            LibraryDetail('Differential Diagnosis', t.differential),
+            LibraryDetail('Next Steps', t.nextSteps),
+            LibraryDetail('Pitfalls', t.pitfalls),
+            LibraryDetail('References', t.reference),
+          ],
+        ),
+      ),
+    ];
+
+    return Scaffold(
+      appBar: AppBar(title: const Text('KanashMED')),
+      body: ListView(
+        padding: const EdgeInsets.all(16),
+        children: [
+          const SizedBox(height: 12),
+          const Icon(
+            Icons.medical_services,
+            size: 64,
+            color: brand,
+          ),
+          const SizedBox(height: 12),
+          const Text(
+            'Welcome to KanashMED',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 8),
+          const Text(
+            'Choose a medical section',
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 20),
+          ...sections.map(
+            (section) => Card(
+              child: ListTile(
+                leading: CircleAvatar(
+                  backgroundColor: brand.withOpacity(0.10),
+                  child: Icon(section.icon, color: brand),
+                ),
+                title: Text(
+                  section.title,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => section.pageBuilder(),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+          const SizedBox(height: 16),
+          const Text(
+            'Educational use only. Verify clinical decisions '
+            'against current guidelines and local protocols.',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 12,
+              color: Colors.black54,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _SectionItem {
+  final String title;
+  final IconData icon;
+  final Widget Function() pageBuilder;
+
+  const _SectionItem(
+    this.title,
+    this.icon,
+    this.pageBuilder,
+  );
+}
+
+class LibraryDetail {
+  final String title;
+  final String content;
+
+  const LibraryDetail(this.title, this.content);
+}
+
+class TopicLibraryPage<T> extends StatefulWidget {
+  final String pageTitle;
+  final List<T> items;
+  final String Function(T) getTitle;
+  final String Function(T) getSubtitle;
+  final List<LibraryDetail> Function(T) getDetails;
+
+  const TopicLibraryPage({
+    super.key,
+    required this.pageTitle,
+    required this.items,
+    required this.getTitle,
+    required this.getSubtitle,
+    required this.getDetails,
+  });
+
+  @override
+  State<TopicLibraryPage<T>> createState() =>
+      _TopicLibraryPageState<T>();
+}
+
+class _TopicLibraryPageState<T>
+    extends State<TopicLibraryPage<T>> {
+  String search = '';
+
+  @override
+  Widget build(BuildContext context) {
+    final filtered = widget.items.where((item) {
+      final title = widget.getTitle(item).toLowerCase();
+      final subtitle = widget.getSubtitle(item).toLowerCase();
+      final query = search.toLowerCase();
+
+      return title.contains(query) ||
+          subtitle.contains(query);
+    }).toList();
+
+    return Scaffold(
+      appBar: AppBar(title: Text(widget.pageTitle)),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(12),
+            child: TextField(
+              onChanged: (value) {
+                setState(() => search = value);
+              },
+              decoration: InputDecoration(
+                hintText: 'Search topics...',
+                prefixIcon: const Icon(Icons.search),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(14),
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            child: filtered.isEmpty
+                ? const Center(child: Text('No topics found.'))
+                : ListView.builder(
+                    padding: const EdgeInsets.all(12),
+                    itemCount: filtered.length,
+                    itemBuilder: (context, index) {
+                      final item = filtered[index];
+
+                      return Card(
+                        child: ListTile(
+                          title: Text(
+                            widget.getTitle(item),
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          subtitle: Text(
+                            widget.getSubtitle(item),
+                          ),
+                          trailing:
+                              const Icon(Icons.chevron_right),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => LibraryDetailPage(
+                                  title: widget.getTitle(item),
+                                  details:
+                                      widget.getDetails(item),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      );
+                    },
+                  ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class LibraryDetailPage extends StatelessWidget {
+  final String title;
+  final List<LibraryDetail> details;
+
+  const LibraryDetailPage({
+    super.key,
+    required this.title,
+    required this.details,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text(title)),
+      body: ListView(
+        padding: const EdgeInsets.all(12),
+        children: details.map((detail) {
+          return Card(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    detail.title,
+                    style: const TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  SelectableText(
+                    detail.content,
+                    style: const TextStyle(height: 1.45),
+                  ),
+                ],
+              ),
+            ),
+          );
+        }).toList(),
+      ),
+    );
+  }
+}
