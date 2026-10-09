@@ -37,7 +37,7 @@ class KanashMEDApp extends StatelessWidget {
           margin: const EdgeInsets.symmetric(vertical: 7),
         ),
       ),
-      home: const HomePage(),
+      home: const SectionsHomePage(),
     );
   }
 }
