@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'Drug_data.dart';
+import 'Emergency_of_iraq_data.dart';
+import 'Gyne_data.dart';
+import 'Surger_data.dart';
+import 'emeregency_data.dart';
+import 'internal_medicine_data.dart';
+import 'İnvestigation_data.dart';
 
 void main() => runApp(const KanashMEDApp());
 
